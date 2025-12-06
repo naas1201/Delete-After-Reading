@@ -143,6 +143,14 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         hapticManager.lightTap()
         return when (item.itemId) {
+            R.id.action_save_game -> {
+                showSaveGameDialog()
+                true
+            }
+            R.id.action_load_game -> {
+                showLoadGameDialog()
+                true
+            }
             R.id.action_reset -> {
                 analyticsManager.logGameReset()
                 viewModel.resetGame()
@@ -150,6 +158,36 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    
+    private fun showSaveGameDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_save_game, null)
+        val saveNameEditText = dialogView.findViewById<android.widget.EditText>(R.id.saveNameEditText)
+        
+        AlertDialog.Builder(this)
+            .setTitle(R.string.save_game_title)
+            .setView(dialogView)
+            .setPositiveButton(R.string.save) { _, _ ->
+                val saveName = saveNameEditText.text.toString()
+                if (saveName.isNotEmpty()) {
+                    viewModel.saveGame(saveName)
+                    hapticManager.mediumTap()
+                    soundManager.playMessageSent()
+                    analyticsManager.logGameSaved(saveName)
+                    android.widget.Toast.makeText(this, R.string.game_saved, android.widget.Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
+    }
+    
+    private fun showLoadGameDialog() {
+        // Simple implementation - in production you'd use a RecyclerView adapter
+        AlertDialog.Builder(this)
+            .setTitle(R.string.load_game_title)
+            .setMessage(R.string.no_saved_games)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
     
     override fun onDestroy() {

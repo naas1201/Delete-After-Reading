@@ -70,4 +70,47 @@ class MessageRepository(private val context: Context) {
     suspend fun updateMessage(message: Message) = withContext(Dispatchers.IO) {
         messageDao.updateMessage(message)
     }
+    
+    // Game State operations
+    private val gameStateDao: GameStateDao = AppDatabase.getDatabase(context).gameStateDao()
+    
+    /**
+     * Get all saved games
+     */
+    fun getAllSavedGames(): LiveData<List<GameState>> {
+        return gameStateDao.getAllSavedGames()
+    }
+    
+    /**
+     * Save current game state
+     */
+    suspend fun saveGameState(
+        saveName: String,
+        currentMessageId: Int,
+        userChoices: Map<Int, Int>,
+        completedMessages: List<Int>
+    ): Long = withContext(Dispatchers.IO) {
+        val gameState = GameState(
+            saveName = saveName,
+            saveTimestamp = System.currentTimeMillis(),
+            currentMessageId = currentMessageId,
+            userChoices = userChoices,
+            completedMessages = completedMessages
+        )
+        gameStateDao.insertGameState(gameState)
+    }
+    
+    /**
+     * Load game state by ID
+     */
+    suspend fun loadGameState(id: Int): GameState? = withContext(Dispatchers.IO) {
+        gameStateDao.getGameStateById(id)
+    }
+    
+    /**
+     * Delete game state
+     */
+    suspend fun deleteGameState(gameState: GameState) = withContext(Dispatchers.IO) {
+        gameStateDao.deleteGameState(gameState)
+    }
 }

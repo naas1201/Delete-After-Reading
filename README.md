@@ -70,6 +70,7 @@ The game uses **WorkManager** to schedule notifications with precise timing:
 
 ## 🚀 Features
 
+### Core Gameplay
 - ✅ **Real-time gameplay**: Authentic delays using actual time
 - ✅ **Persistent storage**: Room database maintains game state
 - ✅ **Background notifications**: WorkManager ensures reliable delivery
@@ -77,6 +78,16 @@ The game uses **WorkManager** to schedule notifications with precise timing:
 - ✅ **MVVM architecture**: Separation of concerns and testability
 - ✅ **Permission handling**: Runtime notification permissions (Android 13+)
 - ✅ **Game reset**: Reset functionality to replay the story
+
+### AAA Features
+- ✅ **Branching narratives**: User choice system with multiple story paths
+- ✅ **Save/Load system**: Save and resume game progress anytime
+- ✅ **Sound effects**: Professional audio feedback for interactions
+- ✅ **Haptic feedback**: Tactile responses for immersive experience
+- ✅ **Dark mode**: Full dark theme with automatic switching
+- ✅ **Localization**: Multi-language support (English, Spanish, French)
+- ✅ **Analytics**: Firebase Analytics for tracking user engagement
+- ✅ **In-app purchases**: Monetization ready with Google Play Billing
 
 ## 📱 Requirements
 
@@ -130,6 +141,12 @@ The game uses **WorkManager** to schedule notifications with precise timing:
 ### Utilities
 - Gson 2.10.1
 - RecyclerView 1.3.2
+- Preference KTX 1.2.1
+
+### Analytics & Monetization
+- Firebase BOM 32.7.0
+- Firebase Analytics KTX
+- Google Play Billing KTX 6.1.0
 
 ## 🎯 Key Implementation Details
 
@@ -187,7 +204,8 @@ Edit `app/src/main/res/values/themes.xml` to customize colors:
 The app requires the following permissions:
 - `POST_NOTIFICATIONS` - To display notifications (Android 13+)
 - `SCHEDULE_EXACT_ALARM` - For precise timing of notifications
-- `USE_EXACT_ALARM` - Alternative for exact alarms
+- `VIBRATE` - For haptic feedback
+- `INTERNET` - For Firebase Analytics and Google Play Billing
 
 ## 🧪 Testing
 
@@ -196,17 +214,32 @@ The project structure supports unit and instrumentation testing:
 - ViewModel can be tested with LiveData observers
 - WorkManager workers can be tested with WorkManagerTestInitHelper
 
-## 🚧 Future Enhancements
+## 📚 Documentation
 
-Potential improvements for production:
-- [ ] User choice system (branching narratives)
-- [ ] Multiple story paths
-- [ ] Save/load game states
-- [ ] Push notification integration
-- [ ] Sound effects and haptic feedback
-- [ ] Dark mode theme
-- [ ] Localization support
-- [ ] Analytics integration
+For detailed information about the new features:
+- See [FEATURES.md](FEATURES.md) for comprehensive feature documentation
+- Check `game_messages_with_choices_example.json` for branching narrative examples
+- Review the code comments for implementation details
+
+## 🎮 New Feature Highlights
+
+### Branching Narratives
+Create multiple story paths with player choices that affect the outcome. See FEATURES.md for JSON format and implementation details.
+
+### Save/Load System
+Players can save their progress and return anytime. All choices and story progress are preserved.
+
+### AAA Polish
+- Professional sound effects for all interactions
+- Haptic feedback for tactile immersion
+- Smooth animations and transitions
+- Dark mode for comfortable viewing
+
+### Global Reach
+Multi-language support ensures accessibility for international audiences. Currently supporting English, Spanish, and French.
+
+### Monetization Ready
+Integrated Google Play Billing for in-app purchases. Ready for premium content, chapter unlocks, or ad removal.
 
 ## 📄 License
 
