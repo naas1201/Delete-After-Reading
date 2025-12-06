@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import com.example.notificationthriller.R
 import com.example.notificationthriller.data.MessageRepository
 import com.example.notificationthriller.ui.MainActivity
@@ -32,14 +33,16 @@ class MessageNotificationWorker(
         val messageId = inputData.getInt(MESSAGE_ID_KEY, -1)
         
         if (messageId == -1) {
-            return Result.failure()
+            val errorData = workDataOf("error" to "Invalid message ID")
+            return Result.failure(errorData)
         }
         
         val repository = MessageRepository(applicationContext)
         val message = repository.getMessageById(messageId)
         
         if (message == null) {
-            return Result.failure()
+            val errorData = workDataOf("error" to "Message not found for ID: $messageId")
+            return Result.failure(errorData)
         }
         
         // Mark message as displayed

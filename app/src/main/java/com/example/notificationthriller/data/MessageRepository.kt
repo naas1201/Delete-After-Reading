@@ -36,7 +36,7 @@ class MessageRepository(private val context: Context) {
             reader.close()
             messages
         } catch (e: Exception) {
-            e.printStackTrace()
+            android.util.Log.e("MessageRepository", "Error loading messages from JSON", e)
             emptyList()
         }
     }
