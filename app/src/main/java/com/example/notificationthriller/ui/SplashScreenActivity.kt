@@ -102,8 +102,14 @@ class SplashScreenActivity : AppCompatActivity() {
      */
     private fun hasBuiltInVideo(): Boolean {
         return try {
-            resources.openRawResource(R.raw.template).close()
-            true
+            // Check if template video exists in raw resources
+            val resourceId = resources.getIdentifier("template", "raw", packageName)
+            if (resourceId != 0) {
+                resources.openRawResource(resourceId).close()
+                true
+            } else {
+                false
+            }
         } catch (e: Exception) {
             false
         }
@@ -113,7 +119,8 @@ class SplashScreenActivity : AppCompatActivity() {
      * Gets URI for built-in video from raw resources
      */
     private fun getBuiltInVideoUri(): Uri {
-        return Uri.parse("android.resource://$packageName/${R.raw.template}")
+        val resourceId = resources.getIdentifier("template", "raw", packageName)
+        return Uri.parse("android.resource://$packageName/$resourceId")
     }
 
     /**
@@ -124,8 +131,17 @@ class SplashScreenActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
         
-        // Add smooth transition animation
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        // Add smooth transition animation (API 34+ uses overrideActivityTransition)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(
+                android.app.Activity.OVERRIDE_TRANSITION_OPEN,
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
     override fun onPause() {
