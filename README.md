@@ -103,19 +103,29 @@ The game uses **WorkManager** to schedule notifications with precise timing:
 - Android SDK with API 34
 
 ### Build Commands
+
+**⭐ This project is production-ready with comprehensive build tools!**
+
 ```bash
+# Run all quality checks (ktlint, detekt, lint)
+./gradlew preBuildCheck
+
+# Complete production verification + signed release build
+./gradlew productionReadyCheck
+
 # Build debug APK
 ./gradlew assembleDebug
 
-# Build release APK
+# Build signed release APK
 ./gradlew assembleRelease
-
-# Run tests
-./gradlew test
 
 # Install on connected device
 ./gradlew installDebug
 ```
+
+**📖 For complete build and release documentation, see:**
+- [BUILD_AND_RELEASE.md](BUILD_AND_RELEASE.md) - Comprehensive build guide
+- [PRODUCTION_READY_SUMMARY.md](PRODUCTION_READY_SUMMARY.md) - Implementation summary
 
 ### Important Note on Firebase
 The project includes a **placeholder** `google-services.json` file for building purposes. For production use:
