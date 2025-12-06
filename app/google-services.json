@@ -7,27 +7,27 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123456789000:android:0000000000000000000000",
+        "mobilesdk_app_id": "1:123456789000:android:abcdef1234567890abcd",
         "android_client_info": {
           "package_name": "com.example.notificationthriller"
         }
       },
       "oauth_client": [
         {
-          "client_id": "123456789000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+          "client_id": "123456789000-abcdef1234567890abcdef1234567890.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          "current_key": "AIzaSyDabcdef1234567890abcdef1234567890"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "123456789000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+              "client_id": "123456789000-abcdef1234567890abcdef1234567890.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
