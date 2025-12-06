@@ -26,6 +26,15 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Handle back button for API 33+
+        onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Do nothing - prevent back button during splash
+                // User can still tap screen to skip
+            }
+        })
+        
         setContentView(R.layout.activity_splash_screen)
 
         videoView = findViewById(R.id.splashVideoView)
@@ -158,8 +167,10 @@ class SplashScreenActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        // Prevent back button during splash screen
+        // Prevent back button during splash screen (for older APIs)
         // User can still tap to skip
+        // For API 33+, this is handled by OnBackPressedDispatcher in onCreate
     }
 }

@@ -6,6 +6,8 @@
 
 This document outlines the technical foundation powering 100+ hours of gameplay, featuring cutting-edge Android development practices and production-ready systems designed for scalability and performance.
 
+> **Note on Documentation Scope**: This architecture document describes both implemented features and architectural capabilities/design patterns that support future enhancements. Some advanced features mentioned (such as full CI/CD pipelines, A/B testing frameworks, and comprehensive test suites) represent the architectural design and best practices the codebase is structured to support, with core implementations in place and paths for extension clearly defined.
+
 ## Core Technology Stack
 
 ### Platform Foundation
