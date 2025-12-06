@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "sender": "Unknown",
+    "message": "Hey... you there?",
+    "delaySeconds": 5
+  },
+  {
+    "id": 2,
+    "sender": "Unknown",
+    "message": "I need your help. Something terrible is happening.",
+    "delaySeconds": 15
+  },
+  {
+    "id": 3,
+    "sender": "Unknown",
+    "message": "They're watching me. I don't have much time.",
+    "delaySeconds": 30
+  },
+  {
+    "id": 4,
+    "sender": "Sarah",
+    "message": "My name is Sarah. I'm a researcher at NexusCorp.",
+    "delaySeconds": 45
+  },
+  {
+    "id": 5,
+    "sender": "Sarah",
+    "message": "I discovered something... something they don't want anyone to know.",
+    "delaySeconds": 60
+  },
+  {
+    "id": 6,
+    "sender": "Sarah",
+    "message": "The project... Project Midnight. It's not what they told us.",
+    "delaySeconds": 90
+  },
+  {
+    "id": 7,
+    "sender": "Sarah",
+    "message": "I'm sending you encrypted files. You need to decrypt them.",
+    "delaySeconds": 120
+  },
+  {
+    "id": 8,
+    "sender": "System",
+    "message": "File received: project_midnight_log_001.enc",
+    "delaySeconds": 135
+  },
+  {
+    "id": 9,
+    "sender": "Sarah",
+    "message": "The password is hidden in plain sight. Look at the timestamps.",
+    "delaySeconds": 180
+  },
+  {
+    "id": 10,
+    "sender": "Sarah",
+    "message": "Wait... someone's at the door. I need to go dark for a while.",
+    "delaySeconds": 210
+  },
+  {
+    "id": 11,
+    "sender": "Unknown",
+    "message": "Sarah can't help you anymore.",
+    "delaySeconds": 300
+  },
+  {
+    "id": 12,
+    "sender": "Unknown",
+    "message": "But we can. If you're smart enough.",
+    "delaySeconds": 330
+  },
+  {
+    "id": 13,
+    "sender": "System",
+    "message": "New contact added: The Architect",
+    "delaySeconds": 360
+  },
+  {
+    "id": 14,
+    "sender": "The Architect",
+    "message": "Welcome to the game. Your choices matter. Choose wisely.",
+    "delaySeconds": 390
+  },
+  {
+    "id": 15,
+    "sender": "The Architect",
+    "message": "Sarah trusted you. Don't let her down. The truth is out there.",
+    "delaySeconds": 420
+  }
+]
