@@ -16,5 +16,5 @@ data class GameState(
     val saveTimestamp: Long,
     val currentMessageId: Int,
     val userChoices: Map<Int, Int>, // Map of messageId to choiceId
-    val completedMessages: List<Int> // List of completed message IDs
+    val completedMessages: List<Int>, // List of completed message IDs
 )

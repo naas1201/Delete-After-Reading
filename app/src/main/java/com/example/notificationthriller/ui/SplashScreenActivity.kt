@@ -2,7 +2,6 @@ package com.example.notificationthriller.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.widget.VideoView
@@ -12,7 +11,7 @@ import java.io.File
 
 /**
  * Splash Screen Activity with video playback support
- * 
+ *
  * Features:
  * - Plays template.mp4 from raw resources or external storage
  * - Automatically transitions to MainActivity after video completes
@@ -21,21 +20,23 @@ import java.io.File
  * - Supports custom video replacement (users can provide their own mp4)
  */
 class SplashScreenActivity : AppCompatActivity() {
-
     private lateinit var videoView: VideoView
     private var videoCompleted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         // Handle back button for API 33+
-        onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // Do nothing - prevent back button during splash
-                // User can still tap screen to skip
-            }
-        })
-        
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : androidx.activity.OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Do nothing - prevent back button during splash
+                    // User can still tap screen to skip
+                }
+            },
+        )
+
         setContentView(R.layout.activity_splash_screen)
 
         videoView = findViewById(R.id.splashVideoView)
@@ -51,19 +52,20 @@ class SplashScreenActivity : AppCompatActivity() {
      */
     private fun setupVideoPlayback() {
         val customVideoPath = getCustomVideoPath()
-        val videoUri = when {
-            customVideoPath != null -> customVideoPath
-            hasBuiltInVideo() -> getBuiltInVideoUri()
-            else -> {
-                // No video available, proceed to main activity immediately
-                proceedToMainActivity()
-                return
+        val videoUri =
+            when {
+                customVideoPath != null -> customVideoPath
+                hasBuiltInVideo() -> getBuiltInVideoUri()
+                else -> {
+                    // No video available, proceed to main activity immediately
+                    proceedToMainActivity()
+                    return
+                }
             }
-        }
 
         try {
             videoView.setVideoURI(videoUri)
-            
+
             // Set completion listener
             videoView.setOnCompletionListener {
                 videoCompleted = true
@@ -95,7 +97,7 @@ class SplashScreenActivity : AppCompatActivity() {
     /**
      * Checks for custom video in external files directory
      * Users can place their own template.mp4 here to customize splash screen
-     * 
+     *
      * Path: /Android/data/com.example.notificationthriller/files/template.mp4
      */
     private fun getCustomVideoPath(): Uri? {
@@ -140,13 +142,13 @@ class SplashScreenActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
-        
+
         // Add smooth transition animation (API 34+ uses overrideActivityTransition)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             overrideActivityTransition(
                 android.app.Activity.OVERRIDE_TRANSITION_OPEN,
                 android.R.anim.fade_in,
-                android.R.anim.fade_out
+                android.R.anim.fade_out,
             )
         } else {
             @Suppress("DEPRECATION")

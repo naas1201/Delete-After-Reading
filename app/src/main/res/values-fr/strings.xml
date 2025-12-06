@@ -42,4 +42,11 @@
     <string name="iap_unlock_chapters_desc">Accédez à tous les chapitres de l\'histoire</string>
     <string name="iap_premium_title">Contenu Premium</string>
     <string name="iap_premium_desc">Débloquez du contenu premium exclusif</string>
+
+    <!-- Splash screen -->
+    <string name="tap_to_skip">Appuyez pour ignorer</string>
+
+    <!-- Saved game items -->
+    <string name="save_name_placeholder">Nom de Sauvegarde</string>
+    <string name="timestamp_placeholder">Horodatage</string>
 </resources>

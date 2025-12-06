@@ -18,26 +18,32 @@ import java.util.Locale
  * Uses ListAdapter with DiffUtil for efficient updates
  */
 class ChatAdapter : ListAdapter<Message, ChatAdapter.MessageViewHolder>(MessageDiffCallback()) {
-    
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_message, parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): MessageViewHolder {
+        val view =
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_message, parent, false)
         return MessageViewHolder(view)
     }
-    
-    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
+
+    override fun onBindViewHolder(
+        holder: MessageViewHolder,
+        position: Int,
+    ) {
         holder.bind(getItem(position))
     }
-    
+
     class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val senderTextView: TextView = itemView.findViewById(R.id.senderTextView)
         private val messageTextView: TextView = itemView.findViewById(R.id.messageTextView)
         private val timestampTextView: TextView = itemView.findViewById(R.id.timestampTextView)
-        
+
         fun bind(message: Message) {
             senderTextView.text = message.sender
             messageTextView.text = message.message
-            
+
             if (message.timestamp > 0) {
                 val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
                 timestampTextView.text = dateFormat.format(Date(message.timestamp))
@@ -47,13 +53,19 @@ class ChatAdapter : ListAdapter<Message, ChatAdapter.MessageViewHolder>(MessageD
             }
         }
     }
-    
+
     class MessageDiffCallback : DiffUtil.ItemCallback<Message>() {
-        override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
+        override fun areItemsTheSame(
+            oldItem: Message,
+            newItem: Message,
+        ): Boolean {
             return oldItem.id == newItem.id
         }
-        
-        override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
+
+        override fun areContentsTheSame(
+            oldItem: Message,
+            newItem: Message,
+        ): Boolean {
             return oldItem == newItem
         }
     }
