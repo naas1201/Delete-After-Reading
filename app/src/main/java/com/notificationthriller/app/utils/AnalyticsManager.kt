@@ -13,7 +13,9 @@ import com.google.firebase.ktx.Firebase
  * Note: Context parameter matches SoundManager API pattern for consistency.
  * Currently unused as Firebase.analytics is initialized globally.
  */
-class AnalyticsManager(@Suppress("UNUSED_PARAMETER") context: Context) {
+class AnalyticsManager(
+    @Suppress("UNUSED_PARAMETER") context: Context,
+) {
     private val firebaseAnalytics: FirebaseAnalytics = Firebase.analytics
 
     fun logGameStart() {
@@ -97,11 +99,14 @@ class AnalyticsManager(@Suppress("UNUSED_PARAMETER") context: Context) {
             }
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.PURCHASE, bundle)
     }
-    
+
     /**
      * Generic event logging
      */
-    fun logEvent(eventName: String, params: Bundle) {
+    fun logEvent(
+        eventName: String,
+        params: Bundle,
+    ) {
         firebaseAnalytics.logEvent(eventName, params)
     }
 }

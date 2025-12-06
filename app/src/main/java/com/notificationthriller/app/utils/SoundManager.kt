@@ -12,7 +12,9 @@ import android.media.SoundPool
  * Currently, sound files are optional and the manager initializes without loading them.
  * TODO: Add actual sound files to res/raw/ and load them using context
  */
-class SoundManager(@Suppress("UNUSED_PARAMETER") context: Context) {
+class SoundManager(
+    @Suppress("UNUSED_PARAMETER") context: Context,
+) {
     private val soundPool: SoundPool
     private val sounds = mutableMapOf<String, Int>()
     private var enabled = true

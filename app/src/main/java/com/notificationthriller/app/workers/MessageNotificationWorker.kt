@@ -74,20 +74,22 @@ class MessageNotificationWorker(
             )
 
         // Enhanced notification title with urgency indicators
-        val enhancedTitle = when {
-            messageId % 10 == 0 -> "🔴 URGENT: $sender" // Critical story moments
-            sender.contains("Unknown", ignoreCase = true) -> "⚠️ $sender"
-            sender.contains("System", ignoreCase = true) -> "📡 $sender"
-            messageId < 5 -> "🔔 NEW: $sender" // Early messages
-            else -> "💬 $sender"
-        }
-        
+        val enhancedTitle =
+            when {
+                messageId % 10 == 0 -> "🔴 URGENT: $sender" // Critical story moments
+                sender.contains("Unknown", ignoreCase = true) -> "⚠️ $sender"
+                sender.contains("System", ignoreCase = true) -> "📡 $sender"
+                messageId < 5 -> "🔔 NEW: $sender" // Early messages
+                else -> "💬 $sender"
+            }
+
         // Add engaging subtext
-        val subtext = when {
-            messageId % 10 == 0 -> "Critical Update" // Major story beats
-            messageId < 5 -> "Your story begins..."
-            else -> "Tap to read"
-        }
+        val subtext =
+            when {
+                messageId % 10 == 0 -> "Critical Update" // Major story beats
+                messageId < 5 -> "Your story begins..."
+                else -> "Tap to read"
+            }
 
         val notification =
             NotificationCompat.Builder(applicationContext, CHANNEL_ID)

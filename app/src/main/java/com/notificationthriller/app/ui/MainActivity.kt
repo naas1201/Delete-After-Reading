@@ -88,19 +88,19 @@ class MainActivity : AppCompatActivity() {
         // Log analytics
         analyticsManager.logGameStart()
     }
-    
+
     private fun handleFirstContactTransition() {
         val fromFirstContact = intent.getBooleanExtra("from_first_contact", false)
         if (fromFirstContact) {
             // Add welcoming animation or special message
             hapticManager.lightTap()
             soundManager.playSuccessChime()
-            
+
             // Show a toast or snackbar welcoming them
             com.google.android.material.snackbar.Snackbar.make(
                 binding.root,
                 "Your story begins now...",
-                com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+                com.google.android.material.snackbar.Snackbar.LENGTH_LONG,
             ).show()
         }
     }
@@ -115,14 +115,14 @@ class MainActivity : AppCompatActivity() {
     private fun showQuickActionsBottomSheet() {
         val bottomSheet = com.google.android.material.bottomsheet.BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottom_sheet_quick_actions, null)
-        
+
         view.findViewById<android.view.View>(R.id.actionArchive).setOnClickListener {
             hapticManager.lightTap()
             soundManager.playMessageSent()
             startActivity(android.content.Intent(this, ArchiveActivity::class.java))
             bottomSheet.dismiss()
         }
-        
+
         view.findViewById<android.view.View>(R.id.actionProfiles).setOnClickListener {
             hapticManager.lightTap()
             soundManager.playMessageSent()
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             android.widget.Toast.makeText(this, R.string.feature_coming_soon_profiles, android.widget.Toast.LENGTH_SHORT).show()
             bottomSheet.dismiss()
         }
-        
+
         view.findViewById<android.view.View>(R.id.actionAchievements).setOnClickListener {
             hapticManager.lightTap()
             soundManager.playMessageSent()
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             android.widget.Toast.makeText(this, R.string.feature_coming_soon_achievements, android.widget.Toast.LENGTH_SHORT).show()
             bottomSheet.dismiss()
         }
-        
+
         view.findViewById<android.view.View>(R.id.actionStatistics).setOnClickListener {
             hapticManager.lightTap()
             soundManager.playMessageSent()
@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             android.widget.Toast.makeText(this, R.string.feature_coming_soon_statistics, android.widget.Toast.LENGTH_SHORT).show()
             bottomSheet.dismiss()
         }
-        
+
         bottomSheet.setContentView(view)
         bottomSheet.show()
     }
@@ -168,21 +168,23 @@ class MainActivity : AppCompatActivity() {
                 binding.emptyStateLayout.visibility = android.view.View.GONE
                 binding.recyclerView.visibility = android.view.View.VISIBLE
                 stopCountdown()
-                
+
                 // Show progressive tooltips based on message count
                 val previousCount = messageCount
                 messageCount = messages.size
-                
+
                 when {
                     previousCount == 0 && messageCount == 1 -> {
                         // First message received - animate FAB to draw attention
                         android.os.Handler(mainLooper).postDelayed({
-                            val pulseAnim = android.view.animation.AnimationUtils.loadAnimation(
-                                this, R.anim.fab_pulse
-                            )
+                            val pulseAnim =
+                                android.view.animation.AnimationUtils.loadAnimation(
+                                    this,
+                                    R.anim.fab_pulse,
+                                )
                             binding.fabQuickActions.startAnimation(pulseAnim)
                         }, 2000)
-                        
+
                         // Show FAB tooltip after animation
                         android.os.Handler(mainLooper).postDelayed({
                             tooltipManager.showFabTooltip(binding.fabQuickActions) {
@@ -205,86 +207,90 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     private fun startFirstMessageCountdown() {
         // First message arrives in 5 seconds according to game_messages.json
         val totalTimeMillis = 5000L
         val totalSeconds = (totalTimeMillis / 1000).toInt()
-        
+
         // Show first wait explanation if needed
         if (waitingExperienceManager.shouldShowFirstWaitExplanation()) {
             showFirstWaitExplanation()
             waitingExperienceManager.markFirstWaitExplanationShown()
         }
-        
+
         // Set initial context message
         updateWaitingContext(1, totalSeconds)
-        
-        countdownTimer = object : android.os.CountDownTimer(totalTimeMillis, 100) {
-            override fun onTick(millisUntilFinished: Long) {
-                val secondsRemaining = millisUntilFinished / 1000
-                val centisecondsRemaining = (millisUntilFinished % 1000) / 10
-                
-                // Update timer text with consistent two-digit formatting
-                binding.countdownTimer.text = String.format("%02d:%02d", secondsRemaining, centisecondsRemaining)
-                
-                // Update progress bar
-                val progress = ((totalTimeMillis - millisUntilFinished).toFloat() / totalTimeMillis * 100).toInt()
-                binding.countdownProgress.progress = progress
-                
-                // Update context every second
-                if (centisecondsRemaining == 0L) {
-                    updateWaitingContext(1, secondsRemaining.toInt())
-                }
-                
-                // Haptic feedback on each second for final countdown
-                if (centisecondsRemaining == 0L && secondsRemaining <= 3) {
-                    hapticManager.lightTap()
-                }
-            }
-            
-            override fun onFinish() {
-                binding.countdownTimer.text = "00:00"
-                binding.countdownProgress.progress = 100
-                hapticManager.mediumTap()
-                soundManager.playNotification()
-                
-                // Record that the player waited naturally
-                waitingExperienceManager.recordNaturalWait()
-                
-                // Check for patience achievement
-                if (waitingExperienceManager.shouldShowPatienceAchievement()) {
-                    showPatienceAchievement()
-                    waitingExperienceManager.markPatienceAchievementShown()
-                }
-                
-                // Animate the card to show anticipation
-                binding.countdownCard.animate()
-                    .scaleX(1.05f)
-                    .scaleY(1.05f)
-                    .setDuration(200)
-                    .withEndAction {
-                        binding.countdownCard.animate()
-                            .scaleX(1f)
-                            .scaleY(1f)
-                            .setDuration(200)
-                            .start()
+
+        countdownTimer =
+            object : android.os.CountDownTimer(totalTimeMillis, 100) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val secondsRemaining = millisUntilFinished / 1000
+                    val centisecondsRemaining = (millisUntilFinished % 1000) / 10
+
+                    // Update timer text with consistent two-digit formatting
+                    binding.countdownTimer.text = String.format("%02d:%02d", secondsRemaining, centisecondsRemaining)
+
+                    // Update progress bar
+                    val progress = ((totalTimeMillis - millisUntilFinished).toFloat() / totalTimeMillis * 100).toInt()
+                    binding.countdownProgress.progress = progress
+
+                    // Update context every second
+                    if (centisecondsRemaining == 0L) {
+                        updateWaitingContext(1, secondsRemaining.toInt())
                     }
-                    .start()
-            }
-        }.start()
+
+                    // Haptic feedback on each second for final countdown
+                    if (centisecondsRemaining == 0L && secondsRemaining <= 3) {
+                        hapticManager.lightTap()
+                    }
+                }
+
+                override fun onFinish() {
+                    binding.countdownTimer.text = "00:00"
+                    binding.countdownProgress.progress = 100
+                    hapticManager.mediumTap()
+                    soundManager.playNotification()
+
+                    // Record that the player waited naturally
+                    waitingExperienceManager.recordNaturalWait()
+
+                    // Check for patience achievement
+                    if (waitingExperienceManager.shouldShowPatienceAchievement()) {
+                        showPatienceAchievement()
+                        waitingExperienceManager.markPatienceAchievementShown()
+                    }
+
+                    // Animate the card to show anticipation
+                    binding.countdownCard.animate()
+                        .scaleX(1.05f)
+                        .scaleY(1.05f)
+                        .setDuration(200)
+                        .withEndAction {
+                            binding.countdownCard.animate()
+                                .scaleX(1f)
+                                .scaleY(1f)
+                                .setDuration(200)
+                                .start()
+                        }
+                        .start()
+                }
+            }.start()
     }
-    
+
     /**
      * Update the waiting experience with contextual information
      * This makes the wait feel purposeful and exciting
      */
-    private fun updateWaitingContext(messageId: Int, remainingSeconds: Int) {
+    private fun updateWaitingContext(
+        messageId: Int,
+        remainingSeconds: Int,
+    ) {
         // Check if countdown text view exists
         try {
             // Get tension-building text
             val tensionText = waitingExperienceManager.getTensionBuildingText()
-            
+
             // Get story teaser (only show occasionally to maintain mystery)
             val showTeaser = remainingSeconds % 3 == 0
             if (showTeaser) {
@@ -296,7 +302,7 @@ class MainActivity : AppCompatActivity() {
             // Countdown views might not exist in all layouts
         }
     }
-    
+
     /**
      * Show explanation dialog for first wait experience
      */
@@ -312,14 +318,16 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
-    
+
     /**
      * Show patience achievement celebration
      */
     private fun showPatienceAchievement() {
         AlertDialog.Builder(this)
             .setTitle("🏆 Achievement Unlocked!")
-            .setMessage("Patient Observer\n\nYou've mastered the art of patience. You understand that the best stories unfold in their own time.\n\nThe tension is building...")
+            .setMessage(
+                "Patient Observer\n\nYou've mastered the art of patience. You understand that the best stories unfold in their own time.\n\nThe tension is building...",
+            )
             .setPositiveButton("Awesome!") { dialog, _ ->
                 hapticManager.heavyTap()
                 soundManager.playSuccessChime()
@@ -328,7 +336,7 @@ class MainActivity : AppCompatActivity() {
             }
             .show()
     }
-    
+
     private fun stopCountdown() {
         countdownTimer?.cancel()
         countdownTimer = null
@@ -442,12 +450,12 @@ class MainActivity : AppCompatActivity() {
         stopCountdown()
         soundManager.release()
     }
-    
+
     override fun onPause() {
         super.onPause()
         stopCountdown()
     }
-    
+
     override fun onResume() {
         super.onResume()
         // Restart countdown if still in empty state

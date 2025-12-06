@@ -11,39 +11,46 @@ import com.notificationthriller.app.R
 /**
  * ViewPager2 adapter for welcome screens
  */
-class WelcomePagerAdapter : 
+class WelcomePagerAdapter :
     RecyclerView.Adapter<WelcomePagerAdapter.WelcomeViewHolder>() {
-
-    private val pages = listOf(
-        WelcomePage(
-            R.drawable.ic_notification_welcome,
-            R.string.welcome_page1_title,
-            R.string.welcome_page1_description
-        ),
-        WelcomePage(
-            R.drawable.ic_time_welcome,
-            R.string.welcome_page2_title,
-            R.string.welcome_page2_description
-        ),
-        WelcomePage(
-            R.drawable.ic_story_welcome,
-            R.string.welcome_page3_title,
-            R.string.welcome_page3_description
-        ),
-        WelcomePage(
-            R.drawable.ic_choices_welcome,
-            R.string.welcome_page4_title,
-            R.string.welcome_page4_description
+    private val pages =
+        listOf(
+            WelcomePage(
+                R.drawable.ic_notification_welcome,
+                R.string.welcome_page1_title,
+                R.string.welcome_page1_description,
+            ),
+            WelcomePage(
+                R.drawable.ic_time_welcome,
+                R.string.welcome_page2_title,
+                R.string.welcome_page2_description,
+            ),
+            WelcomePage(
+                R.drawable.ic_story_welcome,
+                R.string.welcome_page3_title,
+                R.string.welcome_page3_description,
+            ),
+            WelcomePage(
+                R.drawable.ic_choices_welcome,
+                R.string.welcome_page4_title,
+                R.string.welcome_page4_description,
+            ),
         )
-    )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WelcomeViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_welcome_page, parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): WelcomeViewHolder {
+        val view =
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_welcome_page, parent, false)
         return WelcomeViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: WelcomeViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: WelcomeViewHolder,
+        position: Int,
+    ) {
         holder.bind(pages[position])
     }
 
@@ -64,6 +71,6 @@ class WelcomePagerAdapter :
     data class WelcomePage(
         val iconRes: Int,
         val titleRes: Int,
-        val descriptionRes: Int
+        val descriptionRes: Int,
     )
 }

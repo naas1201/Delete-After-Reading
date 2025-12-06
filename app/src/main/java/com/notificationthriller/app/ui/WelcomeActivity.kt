@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.notificationthriller.app.R
 import com.notificationthriller.app.databinding.ActivityWelcomeBinding
-import com.google.android.material.tabs.TabLayoutMediator
 
 /**
  * Welcome/Tutorial Activity
- * 
+ *
  * Introduces players to the game concept progressively:
  * - Explains what the game is about
  * - Shows how notifications work
@@ -26,7 +25,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         // Check if user has seen welcome screen
         val prefs = getSharedPreferences("game_prefs", MODE_PRIVATE)
         if (prefs.getBoolean("welcome_completed", false)) {
@@ -52,18 +51,20 @@ class WelcomeActivity : AppCompatActivity() {
     private fun setupViewPager() {
         adapter = WelcomePagerAdapter()
         binding.viewPager.adapter = adapter
-        
+
         // Setup tab dots indicator
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ ->
             // Just show dots, no text
         }.attach()
 
         // Listen for page changes
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                updateButtons(position)
-            }
-        })
+        binding.viewPager.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    updateButtons(position)
+                }
+            },
+        )
     }
 
     private fun setupButtons() {
@@ -91,7 +92,7 @@ class WelcomeActivity : AppCompatActivity() {
     private fun updateButtons(position: Int) {
         // Update visibility and text based on current page
         binding.buttonBack.visibility = if (position > 0) View.VISIBLE else View.GONE
-        
+
         if (position == adapter.itemCount - 1) {
             binding.buttonNext.text = getString(R.string.welcome_start_game)
             binding.buttonSkip.visibility = View.GONE
@@ -116,7 +117,7 @@ class WelcomeActivity : AppCompatActivity() {
         val intent = Intent(this, FirstContactActivity::class.java)
         startActivity(intent)
         finish()
-        
+
         // Add smooth transition
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }

@@ -12,7 +12,7 @@ import com.notificationthriller.app.databinding.ActivityArchiveBinding
 
 /**
  * Archive Activity - Review past messages
- * 
+ *
  * Provides players something to do while waiting:
  * - Search through message history
  * - Filter by character
@@ -26,7 +26,7 @@ class ArchiveActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         binding = ActivityArchiveBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -57,7 +57,7 @@ class ArchiveActivity : AppCompatActivity() {
         viewModel.displayedMessages.observe(this) { messages ->
             // Show all messages in archive
             adapter.submitList(messages)
-            
+
             // Update empty state
             if (messages.isEmpty()) {
                 binding.emptyStateText.visibility = android.view.View.VISIBLE
@@ -71,23 +71,25 @@ class ArchiveActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.archive_menu, menu)
-        
+
         // Setup search
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as? SearchView
         searchView?.queryHint = getString(R.string.archive_search_hint)
-        
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterMessages(newText ?: "")
-                return true
-            }
-        })
-        
+        searchView?.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    filterMessages(newText ?: "")
+                    return true
+                }
+            },
+        )
+
         return true
     }
 
@@ -103,14 +105,15 @@ class ArchiveActivity : AppCompatActivity() {
 
     private fun filterMessages(query: String) {
         viewModel.displayedMessages.value?.let { messages ->
-            val filtered = if (query.isEmpty()) {
-                messages
-            } else {
-                messages.filter { 
-                    it.message.contains(query, ignoreCase = true) ||
-                    it.sender.contains(query, ignoreCase = true)
+            val filtered =
+                if (query.isEmpty()) {
+                    messages
+                } else {
+                    messages.filter {
+                        it.message.contains(query, ignoreCase = true) ||
+                            it.sender.contains(query, ignoreCase = true)
+                    }
                 }
-            }
             adapter.submitList(filtered)
         }
     }
