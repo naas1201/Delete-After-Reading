@@ -62,6 +62,52 @@ class HapticManager(private val context: Context) {
         }
     }
 
+    /**
+     * Dramatic effect for important story moments
+     */
+    fun dramaticEffect() {
+        if (!enabled || vibrator == null) return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create a rising intensity pattern
+            val timings = longArrayOf(0, 50, 50, 100, 50, 150)
+            val amplitudes = intArrayOf(0, 50, 0, 100, 0, 255)
+            vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        } else {
+            @Suppress("DEPRECATION")
+            vibrator.vibrate(longArrayOf(0, 50, 50, 100, 50, 150), -1)
+        }
+    }
+
+    /**
+     * Success pattern for achievements
+     */
+    fun successPattern() {
+        if (!enabled || vibrator == null) return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val timings = longArrayOf(0, 30, 30, 30, 30, 60)
+            val amplitudes = intArrayOf(0, 100, 0, 100, 0, 200)
+            vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        } else {
+            @Suppress("DEPRECATION")
+            vibrator.vibrate(longArrayOf(0, 30, 30, 30, 30, 60), -1)
+        }
+    }
+
+    /**
+     * Warning/danger pattern
+     */
+    fun warningPattern() {
+        if (!enabled || vibrator == null) return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val timings = longArrayOf(0, 100, 100, 100)
+            val amplitudes = intArrayOf(0, 255, 0, 255)
+            vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        } else {
+            @Suppress("DEPRECATION")
+            vibrator.vibrate(longArrayOf(0, 100, 100, 100), -1)
+        }
+    }
+
     fun setEnabled(enabled: Boolean) {
         this.enabled = enabled
     }
