@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme -->
-    <style name="Theme.NotificationThriller" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Base application theme with AAA polish -->
+    <style name="Theme.NotificationThriller" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
         <item name="colorPrimary">#2196F3</item>
         <item name="colorPrimaryVariant">#1976D2</item>
         <item name="colorOnPrimary">#FFFFFF</item>
+        
+        <!-- Secondary colors -->
         <item name="colorSecondary">#03DAC5</item>
         <item name="colorSecondaryVariant">#018786</item>
         <item name="colorOnSecondary">#000000</item>
+        
+        <!-- Surface colors -->
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1C1B1F</item>
+        <item name="colorSurfaceVariant">#E7E0EC</item>
+        <item name="colorOnSurfaceVariant">#49454F</item>
+        
+        <!-- Background colors -->
+        <item name="android:colorBackground">#FEFBFF</item>
+        
+        <!-- System bars -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        
+        <!-- Animation duration for transitions -->
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+        
+        <!-- Enable edge-to-edge -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <!-- Splash Screen theme - Full screen with no action bar -->
-    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <!-- Window animation style -->
+    <style name="WindowAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
     </style>
 </resources>

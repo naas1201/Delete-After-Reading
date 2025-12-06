@@ -69,11 +69,60 @@ class MainActivity : AppCompatActivity() {
         // Observe messages
         observeMessages()
 
+        // Setup FAB for quick actions
+        setupFab()
+
         // Request notification permission and initialize game
         checkNotificationPermissionAndInitialize()
 
         // Log analytics
         analyticsManager.logGameStart()
+    }
+
+    private fun setupFab() {
+        binding.fabQuickActions.setOnClickListener {
+            hapticManager.lightTap()
+            showQuickActionsBottomSheet()
+        }
+    }
+
+    private fun showQuickActionsBottomSheet() {
+        val bottomSheet = com.google.android.material.bottomsheet.BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_quick_actions, null)
+        
+        view.findViewById<android.view.View>(R.id.actionArchive).setOnClickListener {
+            hapticManager.lightTap()
+            soundManager.playMessageSent()
+            startActivity(android.content.Intent(this, ArchiveActivity::class.java))
+            bottomSheet.dismiss()
+        }
+        
+        view.findViewById<android.view.View>(R.id.actionProfiles).setOnClickListener {
+            hapticManager.lightTap()
+            soundManager.playMessageSent()
+            // TODO: Open character profiles screen
+            android.widget.Toast.makeText(this, R.string.feature_coming_soon_profiles, android.widget.Toast.LENGTH_SHORT).show()
+            bottomSheet.dismiss()
+        }
+        
+        view.findViewById<android.view.View>(R.id.actionAchievements).setOnClickListener {
+            hapticManager.lightTap()
+            soundManager.playMessageSent()
+            // TODO: Open achievements screen
+            android.widget.Toast.makeText(this, R.string.feature_coming_soon_achievements, android.widget.Toast.LENGTH_SHORT).show()
+            bottomSheet.dismiss()
+        }
+        
+        view.findViewById<android.view.View>(R.id.actionStatistics).setOnClickListener {
+            hapticManager.lightTap()
+            soundManager.playMessageSent()
+            // TODO: Open statistics screen
+            android.widget.Toast.makeText(this, R.string.feature_coming_soon_statistics, android.widget.Toast.LENGTH_SHORT).show()
+            bottomSheet.dismiss()
+        }
+        
+        bottomSheet.setContentView(view)
+        bottomSheet.show()
     }
 
     private fun setupRecyclerView() {
@@ -90,6 +139,11 @@ class MainActivity : AppCompatActivity() {
             // Scroll to bottom when new message arrives
             if (messages.isNotEmpty()) {
                 binding.recyclerView.smoothScrollToPosition(messages.size - 1)
+                binding.emptyStateLayout.visibility = android.view.View.GONE
+                binding.recyclerView.visibility = android.view.View.VISIBLE
+            } else {
+                binding.emptyStateLayout.visibility = android.view.View.VISIBLE
+                binding.recyclerView.visibility = android.view.View.GONE
             }
         }
     }

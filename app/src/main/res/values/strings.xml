@@ -49,4 +49,60 @@
     <!-- Saved game items -->
     <string name="save_name_placeholder">Save Name</string>
     <string name="timestamp_placeholder">Timestamp</string>
+    
+    <!-- Welcome/Tutorial screens -->
+    <string name="welcome_skip">Skip</string>
+    <string name="welcome_next">Next</string>
+    <string name="welcome_back">Back</string>
+    <string name="welcome_start_game">Start Game</string>
+    <string name="welcome_icon_description">Welcome screen icon</string>
+    
+    <string name="welcome_page1_title">Welcome to The Notification Thriller</string>
+    <string name="welcome_page1_description">Experience a thrilling interactive story that unfolds through mysterious messages. Your choices will shape the narrative and determine the outcome.</string>
+    
+    <string name="welcome_page2_title">Real-Time Storytelling</string>
+    <string name="welcome_page2_description">The story happens in real-time. When a character says "wait 10 minutes," you\'ll receive their next message after exactly 10 minutes. Experience authentic pacing and suspense.</string>
+    
+    <string name="welcome_page3_title">Immersive Experience</string>
+    <string name="welcome_page3_description">Notifications make the game feel real. You\'ll receive messages as if you\'re truly chatting with the characters. Enable notifications for the best experience.</string>
+    
+    <string name="welcome_page4_title">Your Choices Matter</string>
+    <string name="welcome_page4_description">Make meaningful decisions that affect relationships, unlock different story paths, and lead to multiple endings. While waiting, explore character profiles and review past messages.</string>
+    
+    <!-- Archive/Investigation Screen -->
+    <string name="archive_title">Message Archive</string>
+    <string name="archive_search_hint">Search messages…</string>
+    <string name="archive_filter_all">All Messages</string>
+    <string name="archive_filter_important">Important</string>
+    <string name="archive_filter_character">By Character</string>
+    
+    <!-- Character Profiles -->
+    <string name="profiles_title">Character Profiles</string>
+    <string name="profile_locked">Locked - Meet them in the story</string>
+    <string name="profile_trust_level">Trust Level:</string>
+    <string name="profile_first_met">First Met:</string>
+    <string name="profile_messages_received">Messages Received:</string>
+    
+    <!-- Waiting Screen -->
+    <string name="waiting_title">Next Message Incoming…</string>
+    <string name="waiting_subtitle">The story continues in:</string>
+    <string name="waiting_explore">Explore While You Wait</string>
+    <string name="waiting_review_messages">Message Archive</string>
+    <string name="waiting_character_profiles">Character Profiles</string>
+    <string name="waiting_achievements">Achievements</string>
+    <string name="waiting_statistics">Your Statistics</string>
+    
+    <!-- Quick action descriptions -->
+    <string name="archive_description">Review and search past messages</string>
+    <string name="profiles_description">Learn about characters you\'ve met</string>
+    <string name="achievements_description">Track your progress and unlocks</string>
+    <string name="statistics_description">View your gameplay stats</string>
+    
+    <!-- Empty states -->
+    <string name="no_messages_yet">No messages yet. Your story is about to begin…</string>
+    
+    <!-- Coming soon features -->
+    <string name="feature_coming_soon_profiles">Character profiles coming soon!</string>
+    <string name="feature_coming_soon_achievements">Achievements screen coming soon!</string>
+    <string name="feature_coming_soon_statistics">Statistics screen coming soon!</string>
 </resources>

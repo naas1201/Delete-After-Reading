@@ -57,6 +57,26 @@ class SoundManager(@Suppress("UNUSED_PARAMETER") context: Context) {
         playSound("notification")
     }
 
+    fun playAchievementUnlocked() {
+        playSound("achievement")
+    }
+
+    fun playUIClick() {
+        playSound("ui_click")
+    }
+
+    fun playDramaticMoment() {
+        playSound("dramatic")
+    }
+
+    fun playSuccessChime() {
+        playSound("success")
+    }
+
+    fun playErrorSound() {
+        playSound("error")
+    }
+
     private fun playSound(soundName: String) {
         if (!enabled) return
         sounds[soundName]?.let { soundId ->

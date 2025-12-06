@@ -33,6 +33,13 @@ class ChatAdapter : ListAdapter<Message, ChatAdapter.MessageViewHolder>(MessageD
         position: Int,
     ) {
         holder.bind(getItem(position))
+        
+        // Add fade-in animation for new messages
+        val animation = android.view.animation.AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.fade_in
+        )
+        holder.itemView.startAnimation(animation)
     }
 
     class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
