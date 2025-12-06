@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "368352693832",
+    "project_id": "studio-2302365096-8e3eb",
+    "storage_bucket": "studio-2302365096-8e3eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368352693832:android:a0a6e289575e45b8add27d",
+        "android_client_info": {
+          "package_name": "com.example.notificationthriller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTBpcQDIPkYtFDpOY5LPISe6FxUriNEeY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
