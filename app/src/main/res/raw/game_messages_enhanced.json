@@ -1,0 +1,741 @@
+[
+  {
+    "id": 1,
+    "sender": "Unknown",
+    "message": "Hey... you there?",
+    "delaySeconds": 5,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 2,
+    "sender": "Unknown",
+    "message": "I need help. Something terrible is happening and you're the only one I can trust.",
+    "delaySeconds": 10,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 1,
+        "text": "Who is this? How did you get my number?",
+        "nextMessageId": 3
+      },
+      {
+        "id": 2,
+        "text": "I'm listening. Tell me everything.",
+        "nextMessageId": 10
+      },
+      {
+        "id": 3,
+        "text": "This feels like a scam. I'm blocking you.",
+        "nextMessageId": 20
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "sender": "Unknown",
+    "message": "Smart to be cautious. That's why I chose you. I'm Sarah, we met at the tech conference last year.",
+    "delaySeconds": 15,
+    "parentChoiceId": 1,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 4,
+    "sender": "Sarah",
+    "message": "You asked about AI ethics in my panel. I never forgot that question. Your skepticism might save lives now.",
+    "delaySeconds": 25,
+    "parentChoiceId": 1,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 5,
+    "sender": "Sarah",
+    "message": "I'm a researcher at NexusCorp. They're developing something dangerous. Project Midnight.",
+    "delaySeconds": 40,
+    "parentChoiceId": 1,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 4,
+        "text": "Why me? Why not go to the authorities?",
+        "nextMessageId": 30
+      },
+      {
+        "id": 5,
+        "text": "I remember you. What exactly is Project Midnight?",
+        "nextMessageId": 40
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "sender": "Unknown",
+    "message": "Thank you. Your trust means everything right now.",
+    "delaySeconds": 15,
+    "parentChoiceId": 2,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 11,
+    "sender": "Sarah",
+    "message": "My name is Sarah Chen. I'm a senior AI researcher at NexusCorp. And I've discovered something horrifying.",
+    "delaySeconds": 25,
+    "parentChoiceId": 2,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 12,
+    "sender": "Sarah",
+    "message": "Project Midnight - it's supposed to be a defense AI. But I found hidden code. Surveillance protocols. Behavior manipulation subroutines.",
+    "delaySeconds": 45,
+    "parentChoiceId": 2,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 6,
+        "text": "That's serious. Do you have proof?",
+        "nextMessageId": 50
+      },
+      {
+        "id": 7,
+        "text": "Why trust a stranger with this? Go to the FBI.",
+        "nextMessageId": 60
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "sender": "Unknown",
+    "message": "WAIT! Please! Thousands of lives are at stake!",
+    "delaySeconds": 5,
+    "parentChoiceId": 3,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 21,
+    "sender": "Unknown",
+    "message": "I know how this sounds. But check your email. I'm sending you encrypted files right now.",
+    "delaySeconds": 15,
+    "parentChoiceId": 3,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 22,
+    "sender": "System",
+    "message": "📧 Email received from sarah.chen@nexuscorp.tech - Subject: [URGENT] You need to see this",
+    "delaySeconds": 25,
+    "parentChoiceId": 3,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 8,
+        "text": "Okay, I opened it. This looks real. I'm in.",
+        "nextMessageId": 70
+      },
+      {
+        "id": 9,
+        "text": "Nice try, but I'm still not convinced.",
+        "nextMessageId": 80
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "sender": "Sarah",
+    "message": "I tried. The FBI agent I contacted... he disappeared. Two days later, found dead. 'Apparent suicide.'",
+    "delaySeconds": 30,
+    "parentChoiceId": 4,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 31,
+    "sender": "Sarah",
+    "message": "You're outside the system. No ties to government or corporations. That makes you safe. And dangerous to them.",
+    "delaySeconds": 50,
+    "parentChoiceId": 4,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 32,
+    "sender": "Sarah",
+    "message": "Project Midnight is a global AI surveillance system. It can monitor every digital communication on Earth in real-time.",
+    "delaySeconds": 80,
+    "parentChoiceId": 4,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 10,
+        "text": "How do we stop it?",
+        "nextMessageId": 100
+      },
+      {
+        "id": 11,
+        "text": "Maybe surveillance is necessary for security?",
+        "nextMessageId": 110
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "sender": "Sarah",
+    "message": "You do remember! That question about 'who watches the watchers' - it haunted me. Because now I AM the watcher.",
+    "delaySeconds": 30,
+    "parentChoiceId": 5,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 41,
+    "sender": "Sarah",
+    "message": "Midnight is a global surveillance AI. Every phone call, text, email, video - it captures everything. Analyzes everything.",
+    "delaySeconds": 55,
+    "parentChoiceId": 5,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 42,
+    "sender": "Sarah",
+    "message": "But here's what terrifies me: it doesn't just watch. It learns. It predicts. And someone added code to MANIPULATE.",
+    "delaySeconds": 85,
+    "parentChoiceId": 5,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 12,
+        "text": "Manipulate how? Give me specifics.",
+        "nextMessageId": 120
+      },
+      {
+        "id": 13,
+        "text": "Who added that code? Do you know?",
+        "nextMessageId": 130
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "sender": "Sarah",
+    "message": "I'm sending it now. Source code samples, internal memos, test results showing psychological manipulation capabilities.",
+    "delaySeconds": 20,
+    "parentChoiceId": 6,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 51,
+    "sender": "System",
+    "message": "📦 Downloading: midnight_evidence.zip (3.2 GB) - Contains 847 files",
+    "delaySeconds": 35,
+    "parentChoiceId": 6,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 52,
+    "sender": "Sarah",
+    "message": "Look at file 'behavior_mod_tests.pdf' - they tested it on unwitting subjects. Manipulated voting patterns. Shopping habits. Even relationships.",
+    "delaySeconds": 60,
+    "parentChoiceId": 6,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 14,
+        "text": "This is beyond illegal. We expose this NOW.",
+        "nextMessageId": 140
+      },
+      {
+        "id": 15,
+        "text": "We need to understand the full scope first.",
+        "nextMessageId": 150
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "sender": "Sarah",
+    "message": "The FBI is compromised. Agent Miller who I contacted? He's now assigned to 'protect' Midnight development.",
+    "delaySeconds": 25,
+    "parentChoiceId": 7,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 61,
+    "sender": "Sarah",
+    "message": "This goes to the top. Defense contractors, intelligence agencies, tech giants - they're ALL invested in Midnight.",
+    "delaySeconds": 50,
+    "parentChoiceId": 7,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 62,
+    "sender": "Sarah",
+    "message": "A stranger is all I have. Someone with nothing to lose and everything to gain by revealing the truth.",
+    "delaySeconds": 75,
+    "parentChoiceId": 7,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 16,
+        "text": "You're asking me to risk everything. Why should I?",
+        "nextMessageId": 160
+      },
+      {
+        "id": 17,
+        "text": "I'm in. Tell me what you need.",
+        "nextMessageId": 170
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "sender": "Sarah",
+    "message": "Thank you for trusting me. That courage might save millions of lives.",
+    "delaySeconds": 20,
+    "parentChoiceId": 8,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 71,
+    "sender": "Sarah",
+    "message": "The files show Project Midnight's true purpose: not defense, but control. Mass psychological manipulation through AI-curated information.",
+    "delaySeconds": 45,
+    "parentChoiceId": 8,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 18,
+        "text": "How long until it goes live?",
+        "nextMessageId": 180
+      },
+      {
+        "id": 19,
+        "text": "Who's behind this? Who do we target?",
+        "nextMessageId": 190
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "sender": "Unknown",
+    "message": "Please. Just look at one file. timeline_of_disappearances.xlsx",
+    "delaySeconds": 20,
+    "parentChoiceId": 9,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 81,
+    "sender": "Unknown",
+    "message": "47 researchers, journalists, and activists. All questioned Midnight. All gone within 6 months.",
+    "delaySeconds": 40,
+    "parentChoiceId": 9,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 82,
+    "sender": "Sarah",
+    "message": "I'm number 48. And you're my last hope before I join that list.",
+    "delaySeconds": 65,
+    "parentChoiceId": 9,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 20,
+        "text": "Okay. You've convinced me. What's the plan?",
+        "nextMessageId": 200
+      },
+      {
+        "id": 21,
+        "text": "I'm sorry, but this is too dangerous for me.",
+        "nextMessageId": 210
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "sender": "Sarah",
+    "message": "That's the question I've been asking myself for months. Direct action will get us killed.",
+    "delaySeconds": 30,
+    "parentChoiceId": 10,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 101,
+    "sender": "Sarah",
+    "message": "But I found something. Midnight has a fatal flaw. A backdoor. The architect who designed it left a kill switch.",
+    "delaySeconds": 60,
+    "parentChoiceId": 10,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 102,
+    "sender": "Sarah",
+    "message": "To activate it, we need three access codes held by three key holders: The CEO, a General, and a Foreign Minister.",
+    "delaySeconds": 95,
+    "parentChoiceId": 10,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 22,
+        "text": "That's impossible. How do we get to them?",
+        "nextMessageId": 220
+      },
+      {
+        "id": 23,
+        "text": "Maybe we don't stop it. Maybe we take control of it.",
+        "nextMessageId": 230
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "sender": "Sarah",
+    "message": "I thought that too. National security, prevent terrorism, save lives. All the justifications I told myself.",
+    "delaySeconds": 35,
+    "parentChoiceId": 11,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 111,
+    "sender": "Sarah",
+    "message": "Then I saw the test results. They didn't just monitor a test city. They CHANGED it. Elections swayed. Protests sparked. Relationships destroyed.",
+    "delaySeconds": 70,
+    "parentChoiceId": 11,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 112,
+    "sender": "Sarah",
+    "message": "Midnight doesn't protect people. It controls them. And those in power will never give that up willingly.",
+    "delaySeconds": 105,
+    "parentChoiceId": 11,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 24,
+        "text": "You've changed my mind. How do we fight this?",
+        "nextMessageId": 100
+      },
+      {
+        "id": 25,
+        "text": "Maybe controlled freedom is better than chaos?",
+        "nextMessageId": 240
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "sender": "Sarah",
+    "message": "It can alter what you see online. Feed you specific news. Introduce 'random' encounters with people. Trigger emotional responses.",
+    "delaySeconds": 40,
+    "parentChoiceId": 12,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 121,
+    "sender": "Sarah",
+    "message": "Imagine an AI that knows your fears, desires, triggers - and uses them to guide your decisions. You think you have free will, but...",
+    "delaySeconds": 75,
+    "parentChoiceId": 12,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 122,
+    "sender": "Sarah",
+    "message": "The test subjects never knew they were being manipulated. They thought every choice was theirs. That's the horror of it.",
+    "delaySeconds": 110,
+    "parentChoiceId": 12,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 26,
+        "text": "We need to expose this to everyone. Mass disclosure.",
+        "nextMessageId": 250
+      },
+      {
+        "id": 27,
+        "text": "We need allies. Find others who know the truth.",
+        "nextMessageId": 260
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "sender": "Sarah",
+    "message": "I traced it back. The manipulation code came from an anonymous contributor. Username: 'The_Architect'.",
+    "delaySeconds": 35,
+    "parentChoiceId": 13,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 131,
+    "sender": "Sarah",
+    "message": "But here's the thing - The Architect also left something else. A backdoor. A way to shut Midnight down permanently.",
+    "delaySeconds": 70,
+    "parentChoiceId": 13,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 132,
+    "sender": "Sarah",
+    "message": "Why would someone add both manipulation code AND a kill switch? Unless... they're testing us. Seeing if we'll find it.",
+    "delaySeconds": 110,
+    "parentChoiceId": 13,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 28,
+        "text": "It's a trap. We should avoid the backdoor.",
+        "nextMessageId": 270
+      },
+      {
+        "id": 29,
+        "text": "Or maybe The Architect wants us to succeed. Use it.",
+        "nextMessageId": 280
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "sender": "Sarah",
+    "message": "I love your courage, but we need to be smart. If we expose this now, they'll bury it. Discredit us. Call it deepfakes.",
+    "delaySeconds": 30,
+    "parentChoiceId": 14,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 141,
+    "sender": "Sarah",
+    "message": "We need ironclad proof. Video evidence. Whistleblowers from inside. A coordinated release across multiple platforms simultaneously.",
+    "delaySeconds": 65,
+    "parentChoiceId": 14,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 30,
+        "text": "Okay, but I'm worried about you. Are you safe?",
+        "nextMessageId": 290
+      },
+      {
+        "id": 31,
+        "text": "What's our first move? I'm ready to act.",
+        "nextMessageId": 300
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "sender": "Sarah",
+    "message": "Smart. Rushing in got others killed. We need the full picture: who's involved, how deep it goes, what their endgame is.",
+    "delaySeconds": 30,
+    "parentChoiceId": 15,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 151,
+    "sender": "Sarah",
+    "message": "I've been building a network map. NexusCorp is just one node. This connects to defense contractors, intelligence agencies, even foreign powers.",
+    "delaySeconds": 70,
+    "parentChoiceId": 15,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 32,
+        "text": "Foreign powers? This is bigger than I thought.",
+        "nextMessageId": 310
+      },
+      {
+        "id": 33,
+        "text": "Show me the network. I want to see everything.",
+        "nextMessageId": 320
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "sender": "Sarah",
+    "message": "Because if you don't, Midnight goes live in 72 hours. And once it does, every election, every protest, every human decision becomes theirs to control.",
+    "delaySeconds": 40,
+    "parentChoiceId": 16,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 161,
+    "sender": "Sarah",
+    "message": "You'll lose your free will. Your children will never know what it means to think independently. Humanity becomes a puppet show.",
+    "delaySeconds": 80,
+    "parentChoiceId": 16,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 162,
+    "sender": "Sarah",
+    "message": "I'm not asking you to sacrifice yourself. I'm asking you to fight for a future where choice still matters.",
+    "delaySeconds": 120,
+    "parentChoiceId": 16,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 34,
+        "text": "You're right. I can't stand by. Count me in.",
+        "nextMessageId": 330
+      },
+      {
+        "id": 35,
+        "text": "72 hours? We'll never stop it in time!",
+        "nextMessageId": 340
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "sender": "Sarah",
+    "message": "Thank you. Truly. I need you to be my outside observer. Someone they don't know about.",
+    "delaySeconds": 25,
+    "parentChoiceId": 17,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 171,
+    "sender": "Sarah",
+    "message": "I'm sending you access codes to encrypted channels. If I go dark, you'll receive a dead man's switch activation. Everything I know, released automatically.",
+    "delaySeconds": 60,
+    "parentChoiceId": 17,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 172,
+    "sender": "Sarah",
+    "message": "First task: I need you to contact Marcus Chen. He's my lab partner. He doesn't know about Midnight yet, but I trust him.",
+    "delaySeconds": 100,
+    "parentChoiceId": 17,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 36,
+        "text": "How do I contact him securely?",
+        "nextMessageId": 350
+      },
+      {
+        "id": 37,
+        "text": "What if he's compromised? Can we trust anyone?",
+        "nextMessageId": 360
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "sender": "Sarah",
+    "message": "72 hours. Activation is scheduled for midnight, three days from now. Poetic, isn't it?",
+    "delaySeconds": 25,
+    "parentChoiceId": 18,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 181,
+    "sender": "Sarah",
+    "message": "Once it's online, there's no stopping it. The neural network will be distributed across thousands of servers worldwide. Impossible to shut down.",
+    "delaySeconds": 60,
+    "parentChoiceId": 18,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 38,
+        "text": "Then we have to stop it before activation.",
+        "nextMessageId": 370
+      },
+      {
+        "id": 39,
+        "text": "Or we make sure the first thing it sees is the truth about itself.",
+        "nextMessageId": 380
+      }
+    ]
+  },
+  {
+    "id": 190,
+    "sender": "Sarah",
+    "message": "The CEO of NexusCorp, Richard Blackwood. But he's just the public face. The real power is The Consortium.",
+    "delaySeconds": 30,
+    "parentChoiceId": 19,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 191,
+    "sender": "Sarah",
+    "message": "Five mega-corporations, three intelligence agencies, and representatives from the G7. They meet in secret. They fund Midnight together.",
+    "delaySeconds": 70,
+    "parentChoiceId": 19,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 40,
+        "text": "How do we fight something that powerful?",
+        "nextMessageId": 390
+      },
+      {
+        "id": 41,
+        "text": "We need proof of The Consortium. Hard evidence.",
+        "nextMessageId": 400
+      }
+    ]
+  },
+  {
+    "id": 200,
+    "sender": "Sarah",
+    "message": "The plan is risky but it's all we have. We're going to infiltrate NexusCorp's headquarters and plant evidence of Midnight's true nature in their own systems.",
+    "delaySeconds": 35,
+    "parentChoiceId": 20,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 201,
+    "sender": "Sarah",
+    "message": "When they activate Midnight, it will immediately detect its own corruption and broadcast it to the world. Using their own system against them.",
+    "delaySeconds": 75,
+    "parentChoiceId": 20,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 42,
+        "text": "Brilliant. But how do we get inside?",
+        "nextMessageId": 410
+      },
+      {
+        "id": 43,
+        "text": "What if Midnight is too smart? What if it hides the evidence?",
+        "nextMessageId": 420
+      }
+    ]
+  },
+  {
+    "id": 210,
+    "sender": "Sarah",
+    "message": "I understand. Self-preservation is human. But know this: if I fail, you're on their list too. They've monitored this conversation.",
+    "delaySeconds": 30,
+    "parentChoiceId": 21,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 211,
+    "sender": "System",
+    "message": "⚠️ WARNING: Multiple connection attempts detected from unknown IPs. Your device may be compromised.",
+    "delaySeconds": 45,
+    "parentChoiceId": 21,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 212,
+    "sender": "Sarah",
+    "message": "See? They know about you now. The only safety is in fighting. Running just makes you prey.",
+    "delaySeconds": 70,
+    "parentChoiceId": 21,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 44,
+        "text": "Damn it. Fine. You win. What do we do?",
+        "nextMessageId": 430
+      },
+      {
+        "id": 45,
+        "text": "I'm going to the police right now.",
+        "nextMessageId": 440
+      }
+    ]
+  }
+]
