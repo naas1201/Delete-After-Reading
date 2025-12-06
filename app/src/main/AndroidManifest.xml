@@ -15,11 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotificationThriller">
         
-        <!-- Splash Screen Activity - Launcher entry point -->
+        <!-- Welcome/Tutorial Activity - Launcher entry point -->
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name=".ui.WelcomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,10 +26,25 @@
             </intent-filter>
         </activity>
         
+        <!-- Splash Screen Activity -->
+        <activity
+            android:name=".ui.SplashScreenActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SplashScreen"
+            android:screenOrientation="portrait">
+        </activity>
+        
         <!-- Main Game Activity -->
         <activity
             android:name=".ui.MainActivity"
             android:exported="false">
+        </activity>
+        
+        <!-- Archive Activity -->
+        <activity
+            android:name=".ui.ArchiveActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity">
         </activity>
         
     </application>
