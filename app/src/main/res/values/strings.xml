@@ -54,20 +54,34 @@
     <string name="welcome_skip">Skip</string>
     <string name="welcome_next">Next</string>
     <string name="welcome_back">Back</string>
-    <string name="welcome_start_game">Start Game</string>
+    <string name="welcome_start_game">Begin Your Story</string>
     <string name="welcome_icon_description">Welcome screen icon</string>
     
-    <string name="welcome_page1_title">Welcome to The Notification Thriller</string>
-    <string name="welcome_page1_description">Experience a thrilling interactive story that unfolds through mysterious messages. Your choices will shape the narrative and determine the outcome.</string>
+    <string name="welcome_page1_title">Someone Needs Your Help</string>
+    <string name="welcome_page1_description">You\'re about to receive a mysterious message from someone in danger. What happens next is entirely up to you. Are you ready?</string>
     
-    <string name="welcome_page2_title">Real-Time Storytelling</string>
-    <string name="welcome_page2_description">The story happens in real-time. When a character says "wait 10 minutes," you\'ll receive their next message after exactly 10 minutes. Experience authentic pacing and suspense.</string>
+    <string name="welcome_page2_title">Every Second Counts</string>
+    <string name="welcome_page2_description">This isn\'t just a story - it\'s happening RIGHT NOW. You\'ll receive urgent messages in real-time. When they say "10 minutes," you\'ll actually wait 10 minutes. The tension is real.</string>
     
-    <string name="welcome_page3_title">Immersive Experience</string>
-    <string name="welcome_page3_description">Notifications make the game feel real. You\'ll receive messages as if you\'re truly chatting with the characters. Enable notifications for the best experience.</string>
+    <string name="welcome_page3_title">Stay Alert</string>
+    <string name="welcome_page3_description">Enable notifications to never miss a critical message. Lives may depend on your quick responses. Every notification brings you deeper into the mystery.</string>
     
-    <string name="welcome_page4_title">Your Choices Matter</string>
-    <string name="welcome_page4_description">Make meaningful decisions that affect relationships, unlock different story paths, and lead to multiple endings. While waiting, explore character profiles and review past messages.</string>
+    <string name="welcome_page4_title">Your Decisions Echo</string>
+    <string name="welcome_page4_description">Trust the wrong person? They\'ll remember. Act too slowly? People die. But save someone? They\'ll have your back forever. Every choice has real consequences.</string>
+    
+    <!-- First Contact / Prologue -->
+    <string name="first_contact_title">Incoming Message…</string>
+    <string name="first_contact_sender">Unknown</string>
+    <string name="first_contact_message">Please… if you\'re reading this, I need your help. They\'re coming for me.</string>
+    <string name="first_contact_choice_1">Who is this?</string>
+    <string name="first_contact_choice_2">How did you get this number?</string>
+    <string name="first_contact_choice_3">[Ignore]</string>
+    <string name="first_contact_response_1">There\'s no time to explain. Please, just trust me…</string>
+    <string name="first_contact_response_2">Does it matter? You\'re my only hope now.</string>
+    <string name="first_contact_response_3">Wait! Don\'t go! I… [Connection Lost]</string>
+    <string name="first_contact_continue">The story begins in %d seconds…</string>
+    <string name="first_contact_achievement">Achievement Unlocked: First Contact</string>
+    <string name="first_contact_achievement_desc">You\'ve taken the first step into the unknown</string>
     
     <!-- Archive/Investigation Screen -->
     <string name="archive_title">Message Archive</string>
@@ -100,6 +114,8 @@
     
     <!-- Empty states -->
     <string name="no_messages_yet">No messages yet. Your story is about to begin…</string>
+    <string name="story_in_progress">Your story is unfolding…</string>
+    <string name="dont_miss_out">Stay tuned - someone needs your help!</string>
     
     <!-- Coming soon features -->
     <string name="feature_coming_soon_profiles">Character profiles coming soon!</string>

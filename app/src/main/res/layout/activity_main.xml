@@ -50,10 +50,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Empty state with welcoming message -->
+        <!-- Empty state with welcoming message and countdown -->
         <LinearLayout
             android:id="@+id/emptyStateLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
@@ -70,7 +70,7 @@
                 android:src="@drawable/ic_notification_welcome"
                 android:contentDescription="@string/welcome_icon_description"
                 app:tint="?attr/colorPrimary"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,6 +86,63 @@
                 android:layout_height="wrap_content"
                 android:text="@string/waiting_subtitle"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:gravity="center"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Countdown card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/countdownCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="?attr/colorPrimaryContainer"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next message arrives in:"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:id="@+id/countdownTimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:05"
+                        android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:layout_marginBottom="8dp" />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/countdownProgress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:indicatorColor="?attr/colorPrimary"
+                        app:trackColor="?attr/colorSurfaceVariant"
+                        android:max="100"
+                        android:progress="0" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/waiting_explore"
+                android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:gravity="center" />
 

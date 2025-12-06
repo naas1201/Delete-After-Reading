@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var hapticManager: HapticManager
     private lateinit var soundManager: SoundManager
     private lateinit var analyticsManager: AnalyticsManager
+    private lateinit var tooltipManager: TooltipManager
+    private var countdownTimer: android.os.CountDownTimer? = null
+    private var messageCount = 0
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -59,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         hapticManager = HapticManager(this)
         soundManager = SoundManager(this)
         analyticsManager = AnalyticsManager(this)
+        tooltipManager = TooltipManager(this)
 
         // Initialize ViewModel
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
@@ -75,8 +79,27 @@ class MainActivity : AppCompatActivity() {
         // Request notification permission and initialize game
         checkNotificationPermissionAndInitialize()
 
+        // Check if coming from first contact for special handling
+        handleFirstContactTransition()
+
         // Log analytics
         analyticsManager.logGameStart()
+    }
+    
+    private fun handleFirstContactTransition() {
+        val fromFirstContact = intent.getBooleanExtra("from_first_contact", false)
+        if (fromFirstContact) {
+            // Add welcoming animation or special message
+            hapticManager.lightTap()
+            soundManager.playSuccessChime()
+            
+            // Show a toast or snackbar welcoming them
+            com.google.android.material.snackbar.Snackbar.make(
+                binding.root,
+                "Your story begins now...",
+                com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+            ).show()
+        }
     }
 
     private fun setupFab() {
@@ -141,11 +164,93 @@ class MainActivity : AppCompatActivity() {
                 binding.recyclerView.smoothScrollToPosition(messages.size - 1)
                 binding.emptyStateLayout.visibility = android.view.View.GONE
                 binding.recyclerView.visibility = android.view.View.VISIBLE
+                stopCountdown()
+                
+                // Show progressive tooltips based on message count
+                val previousCount = messageCount
+                messageCount = messages.size
+                
+                when {
+                    previousCount == 0 && messageCount == 1 -> {
+                        // First message received - animate FAB to draw attention
+                        android.os.Handler(mainLooper).postDelayed({
+                            val pulseAnim = android.view.animation.AnimationUtils.loadAnimation(
+                                this, R.anim.fab_pulse
+                            )
+                            binding.fabQuickActions.startAnimation(pulseAnim)
+                        }, 2000)
+                        
+                        // Show FAB tooltip after animation
+                        android.os.Handler(mainLooper).postDelayed({
+                            tooltipManager.showFabTooltip(binding.fabQuickActions) {
+                                hapticManager.lightTap()
+                            }
+                        }, 4000)
+                    }
+                    messageCount >= 3 && previousCount < 3 -> {
+                        // Third message - show archive tooltip
+                        android.os.Handler(mainLooper).postDelayed({
+                            tooltipManager.showArchiveTooltip(binding.root)
+                        }, 2000)
+                    }
+                }
             } else {
                 binding.emptyStateLayout.visibility = android.view.View.VISIBLE
                 binding.recyclerView.visibility = android.view.View.GONE
+                // Start countdown for first message (5 seconds from game_messages.json)
+                startFirstMessageCountdown()
             }
         }
+    }
+    
+    private fun startFirstMessageCountdown() {
+        // First message arrives in 5 seconds according to game_messages.json
+        val totalTimeMillis = 5000L
+        
+        countdownTimer = object : android.os.CountDownTimer(totalTimeMillis, 100) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                val centisecondsRemaining = (millisUntilFinished % 1000) / 10
+                
+                // Update timer text with consistent two-digit formatting
+                binding.countdownTimer.text = String.format("%02d:%02d", secondsRemaining, centisecondsRemaining)
+                
+                // Update progress bar
+                val progress = ((totalTimeMillis - millisUntilFinished).toFloat() / totalTimeMillis * 100).toInt()
+                binding.countdownProgress.progress = progress
+                
+                // Haptic feedback on each second
+                if (centisecondsRemaining == 0L && secondsRemaining <= 3) {
+                    hapticManager.lightTap()
+                }
+            }
+            
+            override fun onFinish() {
+                binding.countdownTimer.text = "00:00"
+                binding.countdownProgress.progress = 100
+                hapticManager.mediumTap()
+                soundManager.playNotification()
+                
+                // Animate the card to show anticipation
+                binding.countdownCard.animate()
+                    .scaleX(1.05f)
+                    .scaleY(1.05f)
+                    .setDuration(200)
+                    .withEndAction {
+                        binding.countdownCard.animate()
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .setDuration(200)
+                            .start()
+                    }
+                    .start()
+            }
+        }.start()
+    }
+    
+    private fun stopCountdown() {
+        countdownTimer?.cancel()
+        countdownTimer = null
     }
 
     private fun checkNotificationPermissionAndInitialize() {
@@ -253,6 +358,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        stopCountdown()
         soundManager.release()
+    }
+    
+    override fun onPause() {
+        super.onPause()
+        stopCountdown()
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        // Restart countdown if still in empty state
+        if (binding.emptyStateLayout.visibility == android.view.View.VISIBLE) {
+            startFirstMessageCountdown()
+        }
     }
 }

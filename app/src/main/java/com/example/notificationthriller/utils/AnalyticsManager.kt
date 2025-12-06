@@ -97,4 +97,11 @@ class AnalyticsManager(@Suppress("UNUSED_PARAMETER") context: Context) {
             }
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.PURCHASE, bundle)
     }
+    
+    /**
+     * Generic event logging
+     */
+    fun logEvent(eventName: String, params: Bundle) {
+        firebaseAnalytics.logEvent(eventName, params)
+    }
 }
