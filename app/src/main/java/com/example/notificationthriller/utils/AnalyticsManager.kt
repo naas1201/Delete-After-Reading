@@ -9,6 +9,9 @@ import com.google.firebase.ktx.Firebase
 /**
  * Manager for Firebase Analytics integration
  * Tracks game events and user behavior
+ *
+ * Note: Context parameter matches SoundManager API pattern for consistency.
+ * Currently unused as Firebase.analytics is initialized globally.
  */
 class AnalyticsManager(@Suppress("UNUSED_PARAMETER") context: Context) {
     private val firebaseAnalytics: FirebaseAnalytics = Firebase.analytics

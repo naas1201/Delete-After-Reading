@@ -7,6 +7,10 @@ import android.media.SoundPool
 /**
  * Manager for game sound effects
  * Provides AAA-quality audio feedback for user interactions
+ *
+ * Note: Context parameter is reserved for future use to load sound resources.
+ * Currently, sound files are optional and the manager initializes without loading them.
+ * TODO: Add actual sound files to res/raw/ and load them using context
  */
 class SoundManager(@Suppress("UNUSED_PARAMETER") context: Context) {
     private val soundPool: SoundPool

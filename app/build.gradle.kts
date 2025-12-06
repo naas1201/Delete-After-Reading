@@ -23,12 +23,24 @@ android {
 
     signingConfigs {
         create("release") {
-            // For production, use keystore.properties file with actual credentials
-            // For demo/testing, we use debug keystore
-            storeFile = file(System.getenv("RELEASE_KEYSTORE_PATH") ?: "${System.getProperty("user.home")}/.android/debug.keystore")
+            // PRODUCTION WARNING: This configuration uses debug keystore as fallback for demo purposes
+            // For production releases, ALWAYS set these environment variables:
+            // - RELEASE_KEYSTORE_PATH
+            // - RELEASE_KEYSTORE_PASSWORD
+            // - RELEASE_KEY_ALIAS
+            // - RELEASE_KEY_PASSWORD
+            // Never deploy to production with debug keystore!
+            val keystorePath = System.getenv("RELEASE_KEYSTORE_PATH") ?: "${System.getProperty("user.home")}/.android/debug.keystore"
+            storeFile = file(keystorePath)
             storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD") ?: "android"
             keyAlias = System.getenv("RELEASE_KEY_ALIAS") ?: "androiddebugkey"
             keyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: "android"
+
+            // Log warning if using debug keystore
+            if (!System.getenv().containsKey("RELEASE_KEYSTORE_PATH")) {
+                logger.warn("⚠️ WARNING: Using debug keystore for release build!")
+                logger.warn("   Set RELEASE_KEYSTORE_PATH env var for production builds")
+            }
         }
     }
 
