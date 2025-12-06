@@ -17,6 +17,7 @@ import com.notificationthriller.app.databinding.ActivityMainBinding
 import com.notificationthriller.app.utils.AnalyticsManager
 import com.notificationthriller.app.utils.HapticManager
 import com.notificationthriller.app.utils.SoundManager
+import com.notificationthriller.app.utils.WaitingExperienceManager
 
 /**
  * Main activity displaying the chat interface
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var soundManager: SoundManager
     private lateinit var analyticsManager: AnalyticsManager
     private lateinit var tooltipManager: TooltipManager
+    private lateinit var waitingExperienceManager: WaitingExperienceManager
     private var countdownTimer: android.os.CountDownTimer? = null
     private var messageCount = 0
 
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         soundManager = SoundManager(this)
         analyticsManager = AnalyticsManager(this)
         tooltipManager = TooltipManager(this)
+        waitingExperienceManager = WaitingExperienceManager(this)
 
         // Initialize ViewModel
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
@@ -206,6 +209,16 @@ class MainActivity : AppCompatActivity() {
     private fun startFirstMessageCountdown() {
         // First message arrives in 5 seconds according to game_messages.json
         val totalTimeMillis = 5000L
+        val totalSeconds = (totalTimeMillis / 1000).toInt()
+        
+        // Show first wait explanation if needed
+        if (waitingExperienceManager.shouldShowFirstWaitExplanation()) {
+            showFirstWaitExplanation()
+            waitingExperienceManager.markFirstWaitExplanationShown()
+        }
+        
+        // Set initial context message
+        updateWaitingContext(1, totalSeconds)
         
         countdownTimer = object : android.os.CountDownTimer(totalTimeMillis, 100) {
             override fun onTick(millisUntilFinished: Long) {
@@ -219,7 +232,12 @@ class MainActivity : AppCompatActivity() {
                 val progress = ((totalTimeMillis - millisUntilFinished).toFloat() / totalTimeMillis * 100).toInt()
                 binding.countdownProgress.progress = progress
                 
-                // Haptic feedback on each second
+                // Update context every second
+                if (centisecondsRemaining == 0L) {
+                    updateWaitingContext(1, secondsRemaining.toInt())
+                }
+                
+                // Haptic feedback on each second for final countdown
                 if (centisecondsRemaining == 0L && secondsRemaining <= 3) {
                     hapticManager.lightTap()
                 }
@@ -230,6 +248,15 @@ class MainActivity : AppCompatActivity() {
                 binding.countdownProgress.progress = 100
                 hapticManager.mediumTap()
                 soundManager.playNotification()
+                
+                // Record that the player waited naturally
+                waitingExperienceManager.recordNaturalWait()
+                
+                // Check for patience achievement
+                if (waitingExperienceManager.shouldShowPatienceAchievement()) {
+                    showPatienceAchievement()
+                    waitingExperienceManager.markPatienceAchievementShown()
+                }
                 
                 // Animate the card to show anticipation
                 binding.countdownCard.animate()
@@ -246,6 +273,60 @@ class MainActivity : AppCompatActivity() {
                     .start()
             }
         }.start()
+    }
+    
+    /**
+     * Update the waiting experience with contextual information
+     * This makes the wait feel purposeful and exciting
+     */
+    private fun updateWaitingContext(messageId: Int, remainingSeconds: Int) {
+        // Check if countdown text view exists
+        try {
+            // Get tension-building text
+            val tensionText = waitingExperienceManager.getTensionBuildingText()
+            
+            // Get story teaser (only show occasionally to maintain mystery)
+            val showTeaser = remainingSeconds % 3 == 0
+            if (showTeaser) {
+                binding.countdownDescription?.text = waitingExperienceManager.getStoryTeaser(messageId)
+            } else {
+                binding.countdownDescription?.text = tensionText
+            }
+        } catch (e: Exception) {
+            // Countdown views might not exist in all layouts
+        }
+    }
+    
+    /**
+     * Show explanation dialog for first wait experience
+     */
+    private fun showFirstWaitExplanation() {
+        AlertDialog.Builder(this)
+            .setTitle("🎭 Real-Time Thriller")
+            .setMessage(waitingExperienceManager.getFirstWaitExplanation())
+            .setPositiveButton("I Understand") { dialog, _ ->
+                hapticManager.lightTap()
+                soundManager.playSuccessChime()
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
+    }
+    
+    /**
+     * Show patience achievement celebration
+     */
+    private fun showPatienceAchievement() {
+        AlertDialog.Builder(this)
+            .setTitle("🏆 Achievement Unlocked!")
+            .setMessage("Patient Observer\n\nYou've mastered the art of patience. You understand that the best stories unfold in their own time.\n\nThe tension is building...")
+            .setPositiveButton("Awesome!") { dialog, _ ->
+                hapticManager.heavyTap()
+                soundManager.playSuccessChime()
+                analyticsManager.logEvent("achievement_patience", Bundle())
+                dialog.dismiss()
+            }
+            .show()
     }
     
     private fun stopCountdown() {

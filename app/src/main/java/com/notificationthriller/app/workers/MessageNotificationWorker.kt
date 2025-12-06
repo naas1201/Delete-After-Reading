@@ -73,15 +73,34 @@ class MessageNotificationWorker(
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
 
+        // Enhanced notification title with urgency indicators
+        val enhancedTitle = when {
+            messageId % 10 == 0 -> "🔴 URGENT: $sender" // Critical story moments
+            sender.contains("Unknown", ignoreCase = true) -> "⚠️ $sender"
+            sender.contains("System", ignoreCase = true) -> "📡 $sender"
+            messageId < 5 -> "🔔 NEW: $sender" // Early messages
+            else -> "💬 $sender"
+        }
+        
+        // Add engaging subtext
+        val subtext = when {
+            messageId % 10 == 0 -> "Critical Update" // Major story beats
+            messageId < 5 -> "Your story begins..."
+            else -> "Tap to read"
+        }
+
         val notification =
             NotificationCompat.Builder(applicationContext, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle(sender)
+                .setContentTitle(enhancedTitle)
                 .setContentText(messageText)
+                .setSubText(subtext)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(messageText))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
+                .setVibrate(longArrayOf(0, 250, 100, 250)) // Custom vibration pattern
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build()
 
         val notificationManager =
