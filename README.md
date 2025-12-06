@@ -117,6 +117,15 @@ The game uses **WorkManager** to schedule notifications with precise timing:
 ./gradlew installDebug
 ```
 
+### Important Note on Firebase
+The project includes a **placeholder** `google-services.json` file for building purposes. For production use:
+1. Create your own Firebase project
+2. Download the real `google-services.json` from Firebase Console
+3. Replace the placeholder file
+4. See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed instructions
+
+The placeholder allows the project to build successfully without Firebase configuration.
+
 ## 📦 Dependencies
 
 ### Core
