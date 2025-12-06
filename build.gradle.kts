@@ -4,4 +4,6 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
     id("com.google.devtools.ksp") version "1.9.0-1.0.13" apply false
     id("com.google.gms.google-services") version "4.4.0" apply false
+    id("org.jlleitschuh.gradle.ktlint") version "12.0.3" apply false
+    id("io.gitlab.arturbosch.detekt") version "1.23.4" apply false
 }

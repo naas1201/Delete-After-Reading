@@ -18,7 +18,7 @@ data class Message(
     val delaySeconds: Long,
     val isDisplayed: Boolean = false,
     val timestamp: Long = 0L,
-    val choices: List<Choice>? = null,  // Choices for branching narrative
-    val parentChoiceId: Int? = null,     // Which choice led to this message
-    val isChoiceBranch: Boolean = false  // Whether this message requires user choice
+    val choices: List<Choice>? = null, // Choices for branching narrative
+    val parentChoiceId: Int? = null, // Which choice led to this message
+    val isChoiceBranch: Boolean = false, // Whether this message requires user choice
 )

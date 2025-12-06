@@ -6,5 +6,5 @@ package com.example.notificationthriller.data
 data class Choice(
     val id: Int,
     val text: String,
-    val nextMessageId: Int? = null  // ID of the next message if this choice is selected
+    val nextMessageId: Int? = null, // ID of the next message if this choice is selected
 )

@@ -11,17 +11,17 @@ import android.os.VibratorManager
  * Provides tactile feedback for AAA gaming experience
  */
 class HapticManager(private val context: Context) {
-    
-    private val vibrator: Vibrator? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
-        vibratorManager?.defaultVibrator
-    } else {
-        @Suppress("DEPRECATION")
-        context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
-    }
-    
+    private val vibrator: Vibrator? =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+            vibratorManager?.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+        }
+
     private var enabled = true
-    
+
     fun lightTap() {
         if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -31,7 +31,7 @@ class HapticManager(private val context: Context) {
             vibrator.vibrate(10)
         }
     }
-    
+
     fun mediumTap() {
         if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -41,7 +41,7 @@ class HapticManager(private val context: Context) {
             vibrator.vibrate(50)
         }
     }
-    
+
     fun heavyTap() {
         if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -51,7 +51,7 @@ class HapticManager(private val context: Context) {
             vibrator.vibrate(100)
         }
     }
-    
+
     fun doubleClick() {
         if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -61,7 +61,7 @@ class HapticManager(private val context: Context) {
             vibrator.vibrate(longArrayOf(0, 50, 100, 50), -1)
         }
     }
-    
+
     fun setEnabled(enabled: Boolean) {
         this.enabled = enabled
     }

@@ -14,68 +14,68 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notificationthriller.R
 import com.example.notificationthriller.databinding.ActivityMainBinding
+import com.example.notificationthriller.utils.AnalyticsManager
 import com.example.notificationthriller.utils.HapticManager
 import com.example.notificationthriller.utils.SoundManager
-import com.example.notificationthriller.utils.AnalyticsManager
 
 /**
  * Main activity displaying the chat interface
  * Uses ViewBinding and MVVM architecture with AAA features
  */
 class MainActivity : AppCompatActivity() {
-    
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ChatViewModel
     private lateinit var adapter: ChatAdapter
     private lateinit var hapticManager: HapticManager
     private lateinit var soundManager: SoundManager
     private lateinit var analyticsManager: AnalyticsManager
-    
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            hapticManager.mediumTap()
-            soundManager.playNotification()
-            initializeGame()
-        } else {
-            // Show dialog explaining importance of notifications
-            showNotificationImportanceDialog()
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission(),
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                hapticManager.mediumTap()
+                soundManager.playNotification()
+                initializeGame()
+            } else {
+                // Show dialog explaining importance of notifications
+                showNotificationImportanceDialog()
+            }
         }
-    }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         // Initialize ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = getString(R.string.app_name)
-        
+
         // Initialize managers
         hapticManager = HapticManager(this)
         soundManager = SoundManager(this)
         analyticsManager = AnalyticsManager(this)
-        
+
         // Initialize ViewModel
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
-        
+
         // Setup RecyclerView
         setupRecyclerView()
-        
+
         // Observe messages
         observeMessages()
-        
+
         // Request notification permission and initialize game
         checkNotificationPermissionAndInitialize()
-        
+
         // Log analytics
         analyticsManager.logGameStart()
     }
-    
+
     private fun setupRecyclerView() {
         adapter = ChatAdapter()
         binding.recyclerView.apply {
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             adapter = this@MainActivity.adapter
         }
     }
-    
+
     private fun observeMessages() {
         viewModel.displayedMessages.observe(this) { messages ->
             adapter.submitList(messages)
@@ -93,13 +93,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     private fun checkNotificationPermissionAndInitialize() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             when {
                 ContextCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.POST_NOTIFICATIONS
+                    Manifest.permission.POST_NOTIFICATIONS,
                 ) == PackageManager.PERMISSION_GRANTED -> {
                     initializeGame()
                 }
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
             initializeGame()
         }
     }
-    
+
     private fun showNotificationImportanceDialog() {
         AlertDialog.Builder(this)
             .setTitle(R.string.notification_permission_title)
@@ -130,16 +130,16 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
-    
+
     private fun initializeGame() {
         viewModel.initializeGame()
     }
-    
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-    
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         hapticManager.lightTap()
         return when (item.itemId) {
@@ -159,11 +159,11 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    
+
     private fun showSaveGameDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_save_game, null)
         val saveNameEditText = dialogView.findViewById<android.widget.EditText>(R.id.saveNameEditText)
-        
+
         AlertDialog.Builder(this)
             .setTitle(R.string.save_game_title)
             .setView(dialogView)
@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton(R.string.cancel, null)
             .show()
     }
-    
+
     private fun showLoadGameDialog() {
         // TODO: Implement full RecyclerView adapter to show saved games
         // This is a simplified implementation. For production:
@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity() {
         // 2. Set up RecyclerView with saved games from viewModel.savedGames
         // 3. Handle item click to call viewModel.loadGame(gameStateId)
         // 4. Show confirmation with game details (save name, timestamp)
-        
+
         // Simple placeholder implementation
         AlertDialog.Builder(this)
             .setTitle(R.string.load_game_title)
@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(android.R.string.ok, null)
             .show()
     }
-    
+
     override fun onDestroy() {
         super.onDestroy()
         soundManager.release()
