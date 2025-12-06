@@ -1,5 +1,6 @@
 package com.example.notificationthriller.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -168,9 +169,12 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // Prevent back button during splash screen (for older APIs)
         // User can still tap to skip
         // For API 33+, this is handled by OnBackPressedDispatcher in onCreate
+        // Intentionally not calling super to prevent back navigation during splash
     }
 }

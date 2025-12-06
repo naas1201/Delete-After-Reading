@@ -38,6 +38,14 @@ android {
     
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+    
+    // Prevent jlink issues with Android Gradle Plugin
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
     }
 }
 
