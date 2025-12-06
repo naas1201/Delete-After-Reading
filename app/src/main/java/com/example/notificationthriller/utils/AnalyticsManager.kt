@@ -10,7 +10,7 @@ import com.google.firebase.ktx.Firebase
  * Manager for Firebase Analytics integration
  * Tracks game events and user behavior
  */
-class AnalyticsManager(context: Context) {
+class AnalyticsManager(@Suppress("UNUSED_PARAMETER") context: Context) {
     private val firebaseAnalytics: FirebaseAnalytics = Firebase.analytics
 
     fun logGameStart() {

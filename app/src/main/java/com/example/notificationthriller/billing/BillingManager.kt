@@ -75,7 +75,7 @@ class BillingManager(private val context: Context) : PurchasesUpdatedListener {
                 .setProductList(productList)
                 .build()
 
-        billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsList ->
+        billingClient?.queryProductDetailsAsync(params) { billingResult, _ ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                 // Products loaded successfully
             }

@@ -174,7 +174,7 @@ class ChoiceEngine(private val context: Context) {
         baseMessage: Message,
         playerChoices: Map<Int, Int>,
         relationships: Map<String, CharacterRelationship>,
-        storyState: StoryState,
+        @Suppress("UNUSED_PARAMETER") storyState: StoryState,
     ): String {
         var messageText = baseMessage.message
 
@@ -262,7 +262,7 @@ class ChoiceEngine(private val context: Context) {
     private fun determineCharacterEffects(
         messageId: Int,
         choiceId: Int,
-        choiceText: String,
+        @Suppress("UNUSED_PARAMETER") choiceText: String,
     ): Map<String, CharacterEffect> {
         val effects = mutableMapOf<String, CharacterEffect>()
 
@@ -304,7 +304,7 @@ class ChoiceEngine(private val context: Context) {
      */
     private fun determineRelationshipStatus(
         trustLevel: Int,
-        effect: CharacterEffect,
+        @Suppress("UNUSED_PARAMETER") effect: CharacterEffect,
     ): String {
         return when {
             trustLevel >= 90 -> "Best Friend"
@@ -358,8 +358,8 @@ class ChoiceEngine(private val context: Context) {
      * Check if choice unlocked any achievements
      */
     private fun checkAchievements(
-        messageId: Int,
-        choiceId: Int,
+        @Suppress("UNUSED_PARAMETER") messageId: Int,
+        @Suppress("UNUSED_PARAMETER") choiceId: Int,
         relationships: Map<String, CharacterRelationship>,
         storyState: StoryState,
     ): List<String> {
@@ -406,7 +406,7 @@ class ChoiceEngine(private val context: Context) {
      */
     private fun addTrustfulTone(
         message: String,
-        sender: String,
+        @Suppress("UNUSED_PARAMETER") sender: String,
         status: String,
     ): String {
         val prefixes =
@@ -423,7 +423,7 @@ class ChoiceEngine(private val context: Context) {
      */
     private fun addSuspiciousTone(
         message: String,
-        sender: String,
+        @Suppress("UNUSED_PARAMETER") sender: String,
     ): String {
         val prefixes =
             listOf(
@@ -453,7 +453,7 @@ class ChoiceEngine(private val context: Context) {
     private fun addChoiceReference(
         message: String,
         pastChoices: List<Pair<Int, Int>>,
-        relationships: Map<String, CharacterRelationship>,
+        @Suppress("UNUSED_PARAMETER") relationships: Map<String, CharacterRelationship>,
     ): String {
         val reference =
             when (pastChoices.size) {

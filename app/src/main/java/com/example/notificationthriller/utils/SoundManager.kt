@@ -8,7 +8,7 @@ import android.media.SoundPool
  * Manager for game sound effects
  * Provides AAA-quality audio feedback for user interactions
  */
-class SoundManager(context: Context) {
+class SoundManager(@Suppress("UNUSED_PARAMETER") context: Context) {
     private val soundPool: SoundPool
     private val sounds = mutableMapOf<String, Int>()
     private var enabled = true

@@ -46,14 +46,14 @@ abstract class AppDatabase : RoomDatabase() {
 
         private val MIGRATION_1_2 =
             object : Migration(1, 2) {
-                override fun migrate(database: SupportSQLiteDatabase) {
+                override fun migrate(db: SupportSQLiteDatabase) {
                     // Add new columns to messages table
-                    database.execSQL("ALTER TABLE messages ADD COLUMN choices TEXT")
-                    database.execSQL("ALTER TABLE messages ADD COLUMN parentChoiceId INTEGER")
-                    database.execSQL("ALTER TABLE messages ADD COLUMN isChoiceBranch INTEGER NOT NULL DEFAULT 0")
+                    db.execSQL("ALTER TABLE messages ADD COLUMN choices TEXT")
+                    db.execSQL("ALTER TABLE messages ADD COLUMN parentChoiceId INTEGER")
+                    db.execSQL("ALTER TABLE messages ADD COLUMN isChoiceBranch INTEGER NOT NULL DEFAULT 0")
 
                     // Create game_states table
-                    database.execSQL(
+                    db.execSQL(
                         """
                         CREATE TABLE IF NOT EXISTS game_states (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -70,9 +70,9 @@ abstract class AppDatabase : RoomDatabase() {
 
         private val MIGRATION_2_3 =
             object : Migration(2, 3) {
-                override fun migrate(database: SupportSQLiteDatabase) {
+                override fun migrate(db: SupportSQLiteDatabase) {
                     // Create choice_consequences table
-                    database.execSQL(
+                    db.execSQL(
                         """
                         CREATE TABLE IF NOT EXISTS choice_consequences (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -90,7 +90,7 @@ abstract class AppDatabase : RoomDatabase() {
                     )
 
                     // Create character_relationships table
-                    database.execSQL(
+                    db.execSQL(
                         """
                         CREATE TABLE IF NOT EXISTS character_relationships (
                             characterName TEXT PRIMARY KEY NOT NULL,
@@ -104,7 +104,7 @@ abstract class AppDatabase : RoomDatabase() {
                     )
 
                     // Create story_state table
-                    database.execSQL(
+                    db.execSQL(
                         """
                         CREATE TABLE IF NOT EXISTS story_state (
                             id INTEGER PRIMARY KEY NOT NULL DEFAULT 1,
@@ -122,7 +122,7 @@ abstract class AppDatabase : RoomDatabase() {
                     )
 
                     // Create achievements table
-                    database.execSQL(
+                    db.execSQL(
                         """
                         CREATE TABLE IF NOT EXISTS achievements (
                             achievementId TEXT PRIMARY KEY NOT NULL,
@@ -137,7 +137,7 @@ abstract class AppDatabase : RoomDatabase() {
                     )
 
                     // Create player_stats table
-                    database.execSQL(
+                    db.execSQL(
                         """
                         CREATE TABLE IF NOT EXISTS player_stats (
                             id INTEGER PRIMARY KEY NOT NULL DEFAULT 1,
