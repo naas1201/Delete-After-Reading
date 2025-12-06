@@ -114,6 +114,8 @@
     
     <!-- Empty states -->
     <string name="no_messages_yet">No messages yet. Your story is about to begin…</string>
+    <string name="story_in_progress">Your story is unfolding…</string>
+    <string name="dont_miss_out">Stay tuned - someone needs your help!</string>
     
     <!-- Coming soon features -->
     <string name="feature_coming_soon_profiles">Character profiles coming soon!</string>

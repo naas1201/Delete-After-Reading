@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var hapticManager: HapticManager
     private lateinit var soundManager: SoundManager
     private lateinit var analyticsManager: AnalyticsManager
+    private lateinit var tooltipManager: TooltipManager
     private var countdownTimer: android.os.CountDownTimer? = null
+    private var messageCount = 0
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         hapticManager = HapticManager(this)
         soundManager = SoundManager(this)
         analyticsManager = AnalyticsManager(this)
+        tooltipManager = TooltipManager(this)
 
         // Initialize ViewModel
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
@@ -162,6 +165,35 @@ class MainActivity : AppCompatActivity() {
                 binding.emptyStateLayout.visibility = android.view.View.GONE
                 binding.recyclerView.visibility = android.view.View.VISIBLE
                 stopCountdown()
+                
+                // Show progressive tooltips based on message count
+                val previousCount = messageCount
+                messageCount = messages.size
+                
+                when {
+                    previousCount == 0 && messageCount == 1 -> {
+                        // First message received - animate FAB to draw attention
+                        android.os.Handler(mainLooper).postDelayed({
+                            val pulseAnim = android.view.animation.AnimationUtils.loadAnimation(
+                                this, R.anim.fab_pulse
+                            )
+                            binding.fabQuickActions.startAnimation(pulseAnim)
+                        }, 2000)
+                        
+                        // Show FAB tooltip after animation
+                        android.os.Handler(mainLooper).postDelayed({
+                            tooltipManager.showFabTooltip(binding.fabQuickActions) {
+                                hapticManager.lightTap()
+                            }
+                        }, 4000)
+                    }
+                    messageCount >= 3 && previousCount < 3 -> {
+                        // Third message - show archive tooltip
+                        android.os.Handler(mainLooper).postDelayed({
+                            tooltipManager.showArchiveTooltip(binding.root)
+                        }, 2000)
+                    }
+                }
             } else {
                 binding.emptyStateLayout.visibility = android.view.View.VISIBLE
                 binding.recyclerView.visibility = android.view.View.GONE
