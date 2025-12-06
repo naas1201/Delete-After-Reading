@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Thriller de Notificaciones</string>
+    <string name="action_reset">Reiniciar Juego</string>
+    <string name="action_save_game">Guardar Juego</string>
+    <string name="action_load_game">Cargar Juego</string>
+    <string name="action_settings">Configuración</string>
+    
+    <!-- Notification permission dialog -->
+    <string name="notification_permission_title">Activar Notificaciones</string>
+    <string name="notification_permission_message">Este juego utiliza notificaciones en tiempo real para crear una experiencia narrativa inmersiva. Para la mejor experiencia de juego, por favor permite las notificaciones.\n\nRecibirás mensajes de la historia en momentos específicos para crear suspenso y ritmo auténtico.</string>
+    <string name="notification_permission_positive">Activar</string>
+    <string name="notification_permission_negative">Omitir</string>
+    
+    <!-- Save/Load dialog -->
+    <string name="save_game_title">Guardar Juego</string>
+    <string name="load_game_title">Cargar Juego</string>
+    <string name="save_name_hint">Ingrese nombre de guardado</string>
+    <string name="save">Guardar</string>
+    <string name="load">Cargar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Eliminar</string>
+    
+    <!-- Game messages -->
+    <string name="game_saved">Juego guardado exitosamente</string>
+    <string name="game_loaded">Juego cargado exitosamente</string>
+    <string name="no_saved_games">No se encontraron juegos guardados</string>
+    
+    <!-- Choices -->
+    <string name="make_choice">Elige tu respuesta:</string>
+    
+    <!-- Settings -->
+    <string name="settings_sound">Efectos de Sonido</string>
+    <string name="settings_haptic">Respuesta Háptica</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_dark_mode">Modo Oscuro</string>
+    
+    <!-- In-app purchases -->
+    <string name="iap_remove_ads_title">Eliminar Anuncios</string>
+    <string name="iap_remove_ads_desc">Eliminar todos los anuncios</string>
+    <string name="iap_unlock_chapters_title">Desbloquear Todos los Capítulos</string>
+    <string name="iap_unlock_chapters_desc">Obtén acceso a todos los capítulos de la historia</string>
+    <string name="iap_premium_title">Contenido Premium</string>
+    <string name="iap_premium_desc">Desbloquea contenido premium exclusivo</string>
+</resources>

@@ -2,4 +2,44 @@
 <resources>
     <string name="app_name">Notification Thriller</string>
     <string name="action_reset">Reset Game</string>
+    <string name="action_save_game">Save Game</string>
+    <string name="action_load_game">Load Game</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- Notification permission dialog -->
+    <string name="notification_permission_title">Enable Notifications</string>
+    <string name="notification_permission_message">This game uses real-time notifications to create an immersive storytelling experience. For the best gameplay, please allow notifications.\n\nYou\'ll receive story messages at specific times to create suspense and authentic pacing.</string>
+    <string name="notification_permission_positive">Enable</string>
+    <string name="notification_permission_negative">Skip</string>
+    
+    <!-- Save/Load dialog -->
+    <string name="save_game_title">Save Game</string>
+    <string name="load_game_title">Load Game</string>
+    <string name="save_name_hint">Enter save name</string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    
+    <!-- Game messages -->
+    <string name="game_saved">Game saved successfully</string>
+    <string name="game_loaded">Game loaded successfully</string>
+    <string name="no_saved_games">No saved games found</string>
+    
+    <!-- Choices -->
+    <string name="make_choice">Choose your response:</string>
+    
+    <!-- Settings -->
+    <string name="settings_sound">Sound Effects</string>
+    <string name="settings_haptic">Haptic Feedback</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    
+    <!-- In-app purchases -->
+    <string name="iap_remove_ads_title">Remove Ads</string>
+    <string name="iap_remove_ads_desc">Remove all advertisements</string>
+    <string name="iap_unlock_chapters_title">Unlock All Chapters</string>
+    <string name="iap_unlock_chapters_desc">Get access to all story chapters</string>
+    <string name="iap_premium_title">Premium Content</string>
+    <string name="iap_premium_desc">Unlock exclusive premium content</string>
 </resources>

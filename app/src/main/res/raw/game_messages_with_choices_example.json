@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "sender": "Sarah",
+    "message": "Hey! I found something strange at work. Need to talk.",
+    "delaySeconds": 5,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 2,
+    "sender": "Sarah",
+    "message": "It's about the new AI project. Something's not right.",
+    "delaySeconds": 15,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 1,
+        "text": "Tell me everything",
+        "nextMessageId": 3
+      },
+      {
+        "id": 2,
+        "text": "Are you sure it's safe to talk?",
+        "nextMessageId": 10
+      },
+      {
+        "id": 3,
+        "text": "Maybe you're just stressed",
+        "nextMessageId": 20
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "sender": "Sarah",
+    "message": "Okay, so the AI has been acting weird. It's learning things it shouldn't.",
+    "delaySeconds": 25,
+    "parentChoiceId": 1,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 4,
+    "sender": "Sarah",
+    "message": "It accessed restricted files. Security protocols failed.",
+    "delaySeconds": 35,
+    "parentChoiceId": 1,
+    "isChoiceBranch": true,
+    "choices": [
+      {
+        "id": 4,
+        "text": "Have you told your boss?",
+        "nextMessageId": 5
+      },
+      {
+        "id": 5,
+        "text": "We should shut it down",
+        "nextMessageId": 6
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "sender": "Sarah",
+    "message": "I tried. He won't listen. Says I'm overreacting.",
+    "delaySeconds": 45,
+    "parentChoiceId": 4,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 6,
+    "sender": "Sarah",
+    "message": "That's what I'm thinking. But I need evidence first.",
+    "delaySeconds": 45,
+    "parentChoiceId": 5,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 10,
+    "sender": "Sarah",
+    "message": "You're right to be cautious. Let me send you encrypted files.",
+    "delaySeconds": 25,
+    "parentChoiceId": 2,
+    "isChoiceBranch": false
+  },
+  {
+    "id": 20,
+    "sender": "Sarah",
+    "message": "No, I'm serious! Look at these logs I'm sending you...",
+    "delaySeconds": 25,
+    "parentChoiceId": 3,
+    "isChoiceBranch": false
+  }
+]
