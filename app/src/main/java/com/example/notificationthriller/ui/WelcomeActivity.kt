@@ -30,8 +30,14 @@ class WelcomeActivity : AppCompatActivity() {
         // Check if user has seen welcome screen
         val prefs = getSharedPreferences("game_prefs", MODE_PRIVATE)
         if (prefs.getBoolean("welcome_completed", false)) {
-            // Skip to splash screen
-            startActivity(Intent(this, SplashScreenActivity::class.java))
+            // Check if they've done first contact
+            if (prefs.getBoolean("first_contact_completed", false)) {
+                // Skip to splash screen
+                startActivity(Intent(this, SplashScreenActivity::class.java))
+            } else {
+                // Go to first contact
+                startActivity(Intent(this, FirstContactActivity::class.java))
+            }
             finish()
             return
         }
@@ -106,8 +112,8 @@ class WelcomeActivity : AppCompatActivity() {
             .putBoolean("welcome_completed", true)
             .apply()
 
-        // Proceed to splash screen
-        val intent = Intent(this, SplashScreenActivity::class.java)
+        // Proceed to first contact experience - THE HOOK!
+        val intent = Intent(this, FirstContactActivity::class.java)
         startActivity(intent)
         finish()
         

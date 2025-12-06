@@ -26,6 +26,13 @@
             </intent-filter>
         </activity>
         
+        <!-- First Contact Activity - The Hook -->
+        <activity
+            android:name=".ui.FirstContactActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+        
         <!-- Splash Screen Activity -->
         <activity
             android:name=".ui.SplashScreenActivity"
