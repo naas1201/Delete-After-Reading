@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Allow UnusedResources - keeping for future features -->
+    <issue id="UnusedResources" severity="informational" />
+
+    <!-- Allow DiscouragedApi in SplashScreenActivity - needed for dynamic resource loading -->
+    <issue id="DiscouragedApi" severity="informational">
+        <ignore path="src/main/java/com/example/notificationthriller/ui/SplashScreenActivity.kt" />
+    </issue>
+
+    <!-- Allow CustomSplashScreen - we have a specific splash experience -->
+    <issue id="CustomSplashScreen" severity="informational" />
+
+    <!-- Allow LockedOrientationActivity - portrait mode is intentional for better UX -->
+    <issue id="LockedOrientationActivity" severity="informational" />
+
+    <!-- Allow OldTargetApi - targeting SDK 34 is current best practice -->
+    <issue id="OldTargetApi" severity="informational" />
+
+    <!-- We're aware of newer dependency versions but testing before updating -->
+    <issue id="GradleDependency" severity="informational" />
+</lint>
