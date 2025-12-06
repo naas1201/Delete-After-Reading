@@ -158,3 +158,33 @@ detekt {
         txt.required.set(true)
     }
 }
+
+// Custom task for comprehensive pre-build checks
+tasks.register("preBuildCheck") {
+    description = "Run all code quality checks before building"
+    group = "verification"
+
+    dependsOn("ktlintCheck", "detekt", "lintDebug")
+
+    doLast {
+        println("✓ All pre-build checks passed successfully!")
+        println("  - ktlint: Code style checked")
+        println("  - detekt: Static analysis completed")
+        println("  - lint: Android Lint checks passed")
+    }
+}
+
+// Custom task for production readiness check
+tasks.register("productionReadyCheck") {
+    description = "Verify project is production-ready with all checks and signed build"
+    group = "verification"
+
+    dependsOn("preBuildCheck", "assembleRelease")
+
+    doLast {
+        println("✓✓✓ Production Readiness Check PASSED ✓✓✓")
+        println("All quality checks completed and signed release APK built successfully!")
+        println("\nRelease APK location:")
+        println("  app/build/outputs/apk/release/")
+    }
+}
