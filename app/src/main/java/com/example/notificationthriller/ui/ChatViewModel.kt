@@ -53,6 +53,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
             val notificationWork = OneTimeWorkRequestBuilder<MessageNotificationWorker>()
                 .setInitialDelay(message.delaySeconds, TimeUnit.SECONDS)
                 .setInputData(inputData)
+                .addTag(WORK_TAG)
                 .addTag("message_${message.id}")
                 .build()
             
@@ -65,12 +66,16 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun resetGame() {
         viewModelScope.launch {
-            // Cancel all pending work
+            // Cancel all pending work for this game only
             val workManager = WorkManager.getInstance(getApplication())
-            workManager.cancelAllWork()
+            workManager.cancelAllWorkByTag(WORK_TAG)
             
             // Re-initialize
             initializeGame()
         }
+    }
+    
+    companion object {
+        private const val WORK_TAG = "notification_thriller_messages"
     }
 }
