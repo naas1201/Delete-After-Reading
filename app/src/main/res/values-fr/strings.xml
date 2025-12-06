@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Thriller de Notification</string>
+    <string name="action_reset">Réinitialiser le Jeu</string>
+    <string name="action_save_game">Sauvegarder le Jeu</string>
+    <string name="action_load_game">Charger le Jeu</string>
+    <string name="action_settings">Paramètres</string>
+    
+    <!-- Notification permission dialog -->
+    <string name="notification_permission_title">Activer les Notifications</string>
+    <string name="notification_permission_message">Ce jeu utilise des notifications en temps réel pour créer une expérience narrative immersive. Pour la meilleure expérience de jeu, veuillez autoriser les notifications.\n\nVous recevrez des messages de l\'histoire à des moments précis pour créer du suspense et un rythme authentique.</string>
+    <string name="notification_permission_positive">Activer</string>
+    <string name="notification_permission_negative">Ignorer</string>
+    
+    <!-- Save/Load dialog -->
+    <string name="save_game_title">Sauvegarder le Jeu</string>
+    <string name="load_game_title">Charger le Jeu</string>
+    <string name="save_name_hint">Entrez le nom de sauvegarde</string>
+    <string name="save">Sauvegarder</string>
+    <string name="load">Charger</string>
+    <string name="cancel">Annuler</string>
+    <string name="delete">Supprimer</string>
+    
+    <!-- Game messages -->
+    <string name="game_saved">Jeu sauvegardé avec succès</string>
+    <string name="game_loaded">Jeu chargé avec succès</string>
+    <string name="no_saved_games">Aucune partie sauvegardée trouvée</string>
+    
+    <!-- Choices -->
+    <string name="make_choice">Choisissez votre réponse:</string>
+    
+    <!-- Settings -->
+    <string name="settings_sound">Effets Sonores</string>
+    <string name="settings_haptic">Retour Haptique</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_dark_mode">Mode Sombre</string>
+    
+    <!-- In-app purchases -->
+    <string name="iap_remove_ads_title">Supprimer les Publicités</string>
+    <string name="iap_remove_ads_desc">Supprimer toutes les publicités</string>
+    <string name="iap_unlock_chapters_title">Débloquer Tous les Chapitres</string>
+    <string name="iap_unlock_chapters_desc">Accédez à tous les chapitres de l\'histoire</string>
+    <string name="iap_premium_title">Contenu Premium</string>
+    <string name="iap_premium_desc">Débloquez du contenu premium exclusif</string>
+</resources>

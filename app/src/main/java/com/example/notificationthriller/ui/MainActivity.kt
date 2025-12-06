@@ -7,28 +7,40 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notificationthriller.R
 import com.example.notificationthriller.databinding.ActivityMainBinding
+import com.example.notificationthriller.utils.HapticManager
+import com.example.notificationthriller.utils.SoundManager
+import com.example.notificationthriller.utils.AnalyticsManager
 
 /**
  * Main activity displaying the chat interface
- * Uses ViewBinding and MVVM architecture
+ * Uses ViewBinding and MVVM architecture with AAA features
  */
 class MainActivity : AppCompatActivity() {
     
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ChatViewModel
     private lateinit var adapter: ChatAdapter
+    private lateinit var hapticManager: HapticManager
+    private lateinit var soundManager: SoundManager
+    private lateinit var analyticsManager: AnalyticsManager
     
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
+            hapticManager.mediumTap()
+            soundManager.playNotification()
             initializeGame()
+        } else {
+            // Show dialog explaining importance of notifications
+            showNotificationImportanceDialog()
         }
     }
     
@@ -41,7 +53,12 @@ class MainActivity : AppCompatActivity() {
         
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "The Notification Thriller"
+        supportActionBar?.title = getString(R.string.app_name)
+        
+        // Initialize managers
+        hapticManager = HapticManager(this)
+        soundManager = SoundManager(this)
+        analyticsManager = AnalyticsManager(this)
         
         // Initialize ViewModel
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
@@ -54,6 +71,9 @@ class MainActivity : AppCompatActivity() {
         
         // Request notification permission and initialize game
         checkNotificationPermissionAndInitialize()
+        
+        // Log analytics
+        analyticsManager.logGameStart()
     }
     
     private fun setupRecyclerView() {
@@ -84,12 +104,31 @@ class MainActivity : AppCompatActivity() {
                     initializeGame()
                 }
                 else -> {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    // Show dialog explaining the importance of notifications
+                    showNotificationImportanceDialog()
                 }
             }
         } else {
             initializeGame()
         }
+    }
+    
+    private fun showNotificationImportanceDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.notification_permission_title)
+            .setMessage(R.string.notification_permission_message)
+            .setPositiveButton(R.string.notification_permission_positive) { _, _ ->
+                hapticManager.lightTap()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+            .setNegativeButton(R.string.notification_permission_negative) { _, _ ->
+                hapticManager.lightTap()
+                initializeGame()
+            }
+            .setCancelable(false)
+            .show()
     }
     
     private fun initializeGame() {
@@ -102,12 +141,19 @@ class MainActivity : AppCompatActivity() {
     }
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        hapticManager.lightTap()
         return when (item.itemId) {
             R.id.action_reset -> {
+                analyticsManager.logGameReset()
                 viewModel.resetGame()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        soundManager.release()
     }
 }

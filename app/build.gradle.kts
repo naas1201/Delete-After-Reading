@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -65,4 +66,14 @@ dependencies {
     
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    
+    // SharedPreferences (DataStore alternative for simpler use)
+    implementation("androidx.preference:preference-ktx:1.2.1")
+    
+    // Firebase Analytics
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    
+    // Google Play Billing
+    implementation("com.android.billingclient:billing-ktx:6.1.0")
 }
