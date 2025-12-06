@@ -9,9 +9,8 @@ import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.notificationthriller.R
-import com.example.notificationthriller.data.GameState
-import com.example.notificationthriller.data.Message
-import com.example.notificationthriller.data.MessageRepository
+import com.example.notificationthriller.data.*
+import com.example.notificationthriller.engine.ChoiceEngine
 import com.example.notificationthriller.workers.MessageNotificationWorker
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
@@ -19,19 +18,34 @@ import java.util.concurrent.TimeUnit
 /**
  * ViewModel for the chat screen following MVVM architecture
  * Manages message data and schedules notifications via WorkManager
- * Includes branching narratives and save/load functionality
+ * Includes AAA-level branching narratives with meaningful consequences
  */
 class ChatViewModel(application: Application) : AndroidViewModel(application) {
     
     private val repository = MessageRepository(application)
+    private val database = AppDatabase.getDatabase(application)
+    private val choiceEngine = ChoiceEngine(application)
+    private val gameInitializer = GameInitializer(application)
+    
     val displayedMessages: LiveData<List<Message>> = repository.getDisplayedMessages()
     val savedGames: LiveData<List<GameState>> = repository.getAllSavedGames()
+    val characterRelationships: LiveData<List<CharacterRelationship>> = 
+        database.characterRelationshipDao().getAllRelationships()
+    val storyState: LiveData<StoryState> = database.storyStateDao().getStoryState()
+    val achievements: LiveData<List<Achievement>> = database.achievementDao().getAllAchievements()
+    val playerStats: LiveData<PlayerStats> = database.playerStatsDao().getStats()
     
     private val _userChoices = MutableLiveData<MutableMap<Int, Int>>(mutableMapOf())
     val userChoices: LiveData<MutableMap<Int, Int>> = _userChoices
     
     private val _saveLoadResult = MutableLiveData<SaveLoadResult>()
     val saveLoadResult: LiveData<SaveLoadResult> = _saveLoadResult
+    
+    private val _consequenceNotifications = MutableLiveData<List<ConsequenceNotification>>()
+    val consequenceNotifications: LiveData<List<ConsequenceNotification>> = _consequenceNotifications
+    
+    private val _choiceImpactSummary = MutableLiveData<String>()
+    val choiceImpactSummary: LiveData<String> = _choiceImpactSummary
     
     sealed class SaveLoadResult {
         object Idle : SaveLoadResult()
@@ -42,9 +56,13 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
     
     /**
      * Initialize the game by loading messages from JSON and scheduling notifications
+     * Now includes AAA-level systems: characters, achievements, story state
      */
     fun initializeGame() {
         viewModelScope.launch {
+            // Initialize AAA game systems
+            gameInitializer.initializeGame()
+            
             // Load messages from JSON
             val messages = repository.loadMessagesFromJson(R.raw.game_messages)
             
@@ -53,6 +71,9 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
             
             // Schedule notifications for all messages
             scheduleNotifications(messages)
+            
+            // Track game start
+            database.playerStatsDao().incrementMessagesRead()
         }
     }
     
@@ -90,18 +111,181 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
             // Clear user choices
             _userChoices.value = mutableMapOf()
             
+            // Full reset of AAA systems
+            gameInitializer.resetForNewPlaythrough(keepProgress = false)
+            
             // Re-initialize
             initializeGame()
         }
     }
     
     /**
-     * Handle user choice selection
+     * Start New Game+ (keep achievements and stats)
      */
-    fun selectChoice(messageId: Int, choiceId: Int) {
-        val currentChoices = _userChoices.value ?: mutableMapOf()
-        currentChoices[messageId] = choiceId
-        _userChoices.value = currentChoices
+    fun startNewGamePlus() {
+        viewModelScope.launch {
+            // Cancel all pending work
+            val workManager = WorkManager.getInstance(getApplication())
+            workManager.cancelAllWorkByTag(WORK_TAG)
+            
+            // Clear user choices
+            _userChoices.value = mutableMapOf()
+            
+            // Reset but keep progress
+            gameInitializer.resetForNewPlaythrough(keepProgress = true)
+            
+            // Re-initialize
+            initializeGame()
+        }
+    }
+    
+    /**
+     * Get dynamic message text based on player's history
+     */
+    fun getDynamicMessageText(message: Message): String {
+        val relationships = characterRelationships.value?.associateBy { it.characterName } ?: emptyMap()
+        val currentStoryState = storyState.value ?: StoryState(id = 1)
+        val playerChoices = _userChoices.value ?: emptyMap()
+        
+        return choiceEngine.getDynamicMessageText(
+            baseMessage = message,
+            playerChoices = playerChoices,
+            relationships = relationships,
+            storyState = currentStoryState
+        )
+    }
+    
+    /**
+     * Get player's current playstyle summary
+     */
+    fun getPlaystyleSummary(): String {
+        val currentStoryState = storyState.value ?: return "No data yet"
+        
+        val morality = when {
+            currentStoryState.moralityScore >= 80 -> "Idealistic"
+            currentStoryState.moralityScore <= 20 -> "Ruthless"
+            else -> "Pragmatic"
+        }
+        
+        val caution = when {
+            currentStoryState.cautionScore >= 80 -> "Cautious"
+            currentStoryState.cautionScore <= 20 -> "Reckless"
+            else -> "Balanced"
+        }
+        
+        return "$morality • $caution"
+    }
+    
+    /**
+     * Get completion percentage
+     */
+    fun getCompletionPercentage(): Int {
+        val messagesRead = playerStats.value?.messagesRead ?: 0
+        val totalMessages = displayedMessages.value?.size ?: 0
+        return if (totalMessages > 0) {
+            ((messagesRead.toFloat() / totalMessages) * 100).toInt()
+        } else {
+            0
+        }
+    }
+    
+    /**
+     * Handle user choice selection with AAA-level consequence tracking
+     */
+    fun selectChoice(messageId: Int, choiceId: Int, choiceText: String) {
+        viewModelScope.launch {
+            // Track the choice
+            val currentChoices = _userChoices.value ?: mutableMapOf()
+            currentChoices[messageId] = choiceId
+            _userChoices.value = currentChoices
+            
+            // Get current game state
+            val relationships = database.characterRelationshipDao().getAllRelationships().value?.associateBy { it.characterName } ?: emptyMap()
+            val currentStoryState = database.storyStateDao().getStoryStateOnce() 
+                ?: StoryState(id = 1)
+            
+            // Process choice through the choice engine
+            val result = choiceEngine.processChoice(
+                messageId = messageId,
+                choiceId = choiceId,
+                choiceText = choiceText,
+                currentRelationships = relationships,
+                storyState = currentStoryState
+            )
+            
+            // Update database with consequences
+            result.consequences.forEach { consequence ->
+                database.choiceConsequenceDao().insertConsequence(consequence)
+            }
+            
+            // Update character relationships
+            result.updatedRelationships.forEach { (_, relationship) ->
+                database.characterRelationshipDao().insertOrUpdateRelationship(relationship)
+            }
+            
+            // Update story state
+            database.storyStateDao().updateStoryState(result.updatedStoryState)
+            
+            // Unlock achievements
+            result.unlockedAchievements.forEach { achievementId ->
+                val achievement = achievementId.split(" - ").firstOrNull()
+                if (achievement != null) {
+                    // Try to unlock by parsing the achievement
+                    database.achievementDao().unlockAchievement(achievement, System.currentTimeMillis())
+                }
+            }
+            
+            // Update player stats
+            database.playerStatsDao().incrementChoicesMade()
+            
+            // Show consequence notifications to player
+            _consequenceNotifications.value = result.notifications
+            
+            // Generate impact summary
+            if (result.notifications.isNotEmpty()) {
+                val summary = generateChoiceImpactSummary(result)
+                _choiceImpactSummary.value = summary
+            }
+        }
+    }
+    
+    /**
+     * Generate a human-readable summary of choice impact
+     */
+    private fun generateChoiceImpactSummary(result: com.example.notificationthriller.engine.ChoiceResult): String {
+        val parts = mutableListOf<String>()
+        
+        // Relationship changes
+        val relationshipChanges = result.notifications.filter { 
+            it.type == ConsequenceType.TRUST_GAINED || it.type == ConsequenceType.TRUST_LOST 
+        }
+        if (relationshipChanges.isNotEmpty()) {
+            parts.add("Relationships changed: ${relationshipChanges.size} character(s)")
+        }
+        
+        // Endings unlocked
+        val endingsUnlocked = result.notifications.count { it.type == ConsequenceType.ENDING_UNLOCKED }
+        if (endingsUnlocked > 0) {
+            parts.add("New endings available: $endingsUnlocked")
+        }
+        
+        // Achievements
+        if (result.unlockedAchievements.isNotEmpty()) {
+            parts.add("Achievements unlocked: ${result.unlockedAchievements.size}")
+        }
+        
+        return if (parts.isEmpty()) {
+            "Your choice has been noted."
+        } else {
+            parts.joinToString(" • ")
+        }
+    }
+    
+    /**
+     * Clear consequence notifications after they've been displayed
+     */
+    fun clearConsequenceNotifications() {
+        _consequenceNotifications.value = emptyList()
     }
     
     /**
