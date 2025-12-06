@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2196F3;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background with rounded corners for adaptive icon -->
+  <rect width="512" height="512" fill="url(#bgGradient)" rx="102.4" />
+  
+  <!-- Notification bell icon concept -->
+  <g transform="translate(256.0, 256.0)">
+    <!-- Bell shape -->
+    <path d="M -76.8 -51.2 
+             Q -76.8 -128.0 0 -128.0
+             Q 76.8 -128.0 76.8 -51.2
+             L 76.8 25.6
+             Q 76.8 76.8 0 76.8
+             Q -76.8 76.8 -76.8 25.6
+             Z"
+          fill="url(#iconGradient)"
+          filter="url(#glow)"
+          stroke="#03DAC5"
+          stroke-width="7.68" />
+    
+    <!-- Bell clapper -->
+    <circle cx="0" cy="76.8" r="15.36" fill="#03DAC5" />
+    
+    <!-- Notification dot (thriller element) -->
+    <circle cx="92.16" cy="-102.4" r="25.6" fill="#e53935" 
+            filter="url(#glow)" />
+    
+    <!-- Mystery lines (thriller theme) -->
+    <line x1="-128.0" y1="-25.6" x2="-92.16" y2="-25.6" 
+          stroke="#03DAC5" stroke-width="5.12" opacity="0.6" />
+    <line x1="92.16" y1="-25.6" x2="128.0" y2="-25.6" 
+          stroke="#03DAC5" stroke-width="5.12" opacity="0.6" />
+  </g>
+  
+  <!-- Optional: Add subtle text/branding -->
+  <text x="256.0" y="435.2" 
+        font-family="Arial, sans-serif" 
+        font-size="61.44" 
+        font-weight="bold"
+        fill="#03DAC5" 
+        text-anchor="middle"
+        opacity="0.4">NT</text>
+</svg>
