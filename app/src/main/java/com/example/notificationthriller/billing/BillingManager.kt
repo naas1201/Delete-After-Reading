@@ -91,22 +91,26 @@ class BillingManager(private val context: Context) : PurchasesUpdatedListener {
             .build()
         
         billingClient?.queryProductDetailsAsync(params) { billingResult, productDetailsList ->
-            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && productDetailsList.isNotEmpty()) {
-                val productDetails = productDetailsList[0]
-                
-                val productDetailsParamsList = listOf(
-                    BillingFlowParams.ProductDetailsParams.newBuilder()
-                        .setProductDetails(productDetails)
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                if (!productDetailsList.isNullOrEmpty()) {
+                    val productDetails = productDetailsList[0]
+                    
+                    val productDetailsParamsList = listOf(
+                        BillingFlowParams.ProductDetailsParams.newBuilder()
+                            .setProductDetails(productDetails)
+                            .build()
+                    )
+                    
+                    val billingFlowParams = BillingFlowParams.newBuilder()
+                        .setProductDetailsParamsList(productDetailsParamsList)
                         .build()
-                )
-                
-                val billingFlowParams = BillingFlowParams.newBuilder()
-                    .setProductDetailsParamsList(productDetailsParamsList)
-                    .build()
-                
-                billingClient?.launchBillingFlow(activity, billingFlowParams)
+                    
+                    billingClient?.launchBillingFlow(activity, billingFlowParams)
+                } else {
+                    _purchaseState.value = PurchaseState.Error("Product not found")
+                }
             } else {
-                _purchaseState.value = PurchaseState.Error("Product not found")
+                _purchaseState.value = PurchaseState.Error("Failed to query products")
             }
         }
     }

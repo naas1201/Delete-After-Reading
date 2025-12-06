@@ -55,7 +55,8 @@ abstract class AppDatabase : RoomDatabase() {
                     "notification_thriller_database"
                 )
                 .addMigrations(MIGRATION_1_2)
-                .fallbackToDestructiveMigration()
+                // Note: fallbackToDestructiveMigration() removed for production to preserve user data
+                // Only use during development if needed
                 .build()
                 INSTANCE = instance
                 instance

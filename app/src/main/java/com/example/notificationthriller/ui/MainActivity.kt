@@ -182,7 +182,14 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun showLoadGameDialog() {
-        // Simple implementation - in production you'd use a RecyclerView adapter
+        // TODO: Implement full RecyclerView adapter to show saved games
+        // This is a simplified implementation. For production:
+        // 1. Inflate dialog_load_game.xml
+        // 2. Set up RecyclerView with saved games from viewModel.savedGames
+        // 3. Handle item click to call viewModel.loadGame(gameStateId)
+        // 4. Show confirmation with game details (save name, timestamp)
+        
+        // Simple placeholder implementation
         AlertDialog.Builder(this)
             .setTitle(R.string.load_game_title)
             .setMessage(R.string.no_saved_games)

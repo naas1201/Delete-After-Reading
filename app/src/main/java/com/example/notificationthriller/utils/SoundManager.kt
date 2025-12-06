@@ -25,8 +25,15 @@ class SoundManager(context: Context) {
             .setAudioAttributes(audioAttributes)
             .build()
         
-        // Sound resources will be added to res/raw/ directory
-        // For now, sounds are optional and fail gracefully if not found
+        // TODO: Add actual sound files to res/raw/ and load them here
+        // Example:
+        // sounds["message_received"] = soundPool.load(context, R.raw.sound_message_received, 1)
+        // sounds["message_sent"] = soundPool.load(context, R.raw.sound_message_sent, 1)
+        // sounds["choice_select"] = soundPool.load(context, R.raw.sound_choice_select, 1)
+        // sounds["notification"] = soundPool.load(context, R.raw.sound_notification, 1)
+        //
+        // For now, sounds are optional and fail gracefully if not loaded
+        // The app will function without sound effects
     }
     
     fun playMessageReceived() {

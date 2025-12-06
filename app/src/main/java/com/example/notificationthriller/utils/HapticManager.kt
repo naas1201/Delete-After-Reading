@@ -12,18 +12,18 @@ import android.os.VibratorManager
  */
 class HapticManager(private val context: Context) {
     
-    private val vibrator: Vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-        vibratorManager.defaultVibrator
+    private val vibrator: Vibrator? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+        vibratorManager?.defaultVibrator
     } else {
         @Suppress("DEPRECATION")
-        context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
     }
     
     private var enabled = true
     
     fun lightTap() {
-        if (!enabled) return
+        if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK))
         } else {
@@ -33,7 +33,7 @@ class HapticManager(private val context: Context) {
     }
     
     fun mediumTap() {
-        if (!enabled) return
+        if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK))
         } else {
@@ -43,7 +43,7 @@ class HapticManager(private val context: Context) {
     }
     
     fun heavyTap() {
-        if (!enabled) return
+        if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK))
         } else {
@@ -53,7 +53,7 @@ class HapticManager(private val context: Context) {
     }
     
     fun doubleClick() {
-        if (!enabled) return
+        if (!enabled || vibrator == null) return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_DOUBLE_CLICK))
         } else {
