@@ -34,6 +34,17 @@ class FirstContactActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
+        // Handle back button - prevent exit during first contact
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : androidx.activity.OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Don't allow back during first contact - commit to the experience
+                    // This increases investment
+                }
+            },
+        )
+        
         binding = ActivityFirstContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
@@ -283,12 +294,5 @@ class FirstContactActivity : AppCompatActivity() {
         super.onDestroy()
         countdownTimer?.cancel()
         soundManager.release()
-    }
-    
-    @Deprecated("Deprecated in Java")
-    @Suppress("DEPRECATION")
-    override fun onBackPressed() {
-        // Don't allow back during first contact - commit to the experience
-        // This increases investment
     }
 }

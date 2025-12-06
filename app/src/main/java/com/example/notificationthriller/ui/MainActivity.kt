@@ -210,23 +210,23 @@ class MainActivity : AppCompatActivity() {
         countdownTimer = object : android.os.CountDownTimer(totalTimeMillis, 100) {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = millisUntilFinished / 1000
-                val millisecondsRemaining = (millisUntilFinished % 1000) / 100
+                val centisecondsRemaining = (millisUntilFinished % 1000) / 10
                 
-                // Update timer text
-                binding.countdownTimer.text = String.format("%02d:%01d", secondsRemaining, millisecondsRemaining)
+                // Update timer text with consistent two-digit formatting
+                binding.countdownTimer.text = String.format("%02d:%02d", secondsRemaining, centisecondsRemaining)
                 
                 // Update progress bar
                 val progress = ((totalTimeMillis - millisUntilFinished).toFloat() / totalTimeMillis * 100).toInt()
                 binding.countdownProgress.progress = progress
                 
                 // Haptic feedback on each second
-                if (millisecondsRemaining == 0L && secondsRemaining <= 3) {
+                if (centisecondsRemaining == 0L && secondsRemaining <= 3) {
                     hapticManager.lightTap()
                 }
             }
             
             override fun onFinish() {
-                binding.countdownTimer.text = "00:0"
+                binding.countdownTimer.text = "00:00"
                 binding.countdownProgress.progress = 100
                 hapticManager.mediumTap()
                 soundManager.playNotification()
