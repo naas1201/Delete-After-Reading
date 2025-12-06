@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- VideoView for splash screen video -->
+    <VideoView
+        android:id="@+id/splashVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <!-- Optional: Add a subtle tap hint -->
+    <TextView
+        android:id="@+id/tapToSkipHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:text="Tap to skip"
+        android:textColor="#80FFFFFF"
+        android:textSize="14sp"
+        android:alpha="0.7"
+        android:padding="8dp" />
+
+</FrameLayout>

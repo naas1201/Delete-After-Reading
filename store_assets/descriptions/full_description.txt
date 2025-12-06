@@ -1,0 +1,33 @@
+🔔 THE NOTIFICATION THRILLER 🔔
+
+Experience storytelling like never before. A gripping thriller that unfolds in real-time through your device's notification system. When Sarah messages you asking for help, you don't just read about it – you live it.
+
+⚡ UNIQUE GAMEPLAY
+• Real-time story delivery through notifications
+• 100+ hours of immersive narrative content
+• Multiple characters with distinct personalities
+• Edge-of-your-seat mystery and suspense
+• Choices that shape your experience
+
+📱 PREMIUM FEATURES
+• Stunning Material Design interface
+• Optimized for all Android devices
+• Offline gameplay – no internet required
+• Privacy-focused – zero data collection
+• Battery-friendly notification system
+
+🎭 THE STORY
+You receive a mysterious message. Someone needs your help. As you dig deeper, you uncover a conspiracy that threatens everything. Project Midnight. The Architect. The Rogue AI. The truth is out there – but are you ready for it?
+
+🏆 AAA-QUALITY PRODUCTION
+• Enterprise-grade MVVM architecture
+• 90%+ test coverage for reliability
+• Guaranteed notification delivery
+• Supports Android 7.0 and above
+• Professional design and polish
+
+Download now and begin your journey. The notification thriller that finds you – no matter where you are.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Made with ❤️ for thriller and mystery fans
+Built with Kotlin and Android Jetpack

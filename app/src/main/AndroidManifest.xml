@@ -13,13 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotificationThriller">
         
+        <!-- Splash Screen Activity - Launcher entry point -->
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".ui.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        
+        <!-- Main Game Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false">
         </activity>
         
     </application>
