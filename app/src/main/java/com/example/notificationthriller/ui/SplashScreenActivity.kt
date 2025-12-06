@@ -1,0 +1,149 @@
+package com.example.notificationthriller.ui
+
+import android.content.Intent
+import android.media.MediaPlayer
+import android.net.Uri
+import android.os.Bundle
+import android.widget.VideoView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.notificationthriller.R
+import java.io.File
+
+/**
+ * Splash Screen Activity with video playback support
+ * 
+ * Features:
+ * - Plays template.mp4 from raw resources or external storage
+ * - Automatically transitions to MainActivity after video completes
+ * - Skippable by tapping the screen
+ * - Falls back gracefully if video is not found
+ * - Supports custom video replacement (users can provide their own mp4)
+ */
+class SplashScreenActivity : AppCompatActivity() {
+
+    private lateinit var videoView: VideoView
+    private var videoCompleted = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash_screen)
+
+        videoView = findViewById(R.id.splashVideoView)
+        setupVideoPlayback()
+    }
+
+    /**
+     * Sets up video playback with fallback mechanism
+     * Priority:
+     * 1. Custom video from app's external files directory (template.mp4)
+     * 2. Built-in video from raw resources
+     * 3. Skip splash screen if no video found
+     */
+    private fun setupVideoPlayback() {
+        val customVideoPath = getCustomVideoPath()
+        val videoUri = when {
+            customVideoPath != null -> customVideoPath
+            hasBuiltInVideo() -> getBuiltInVideoUri()
+            else -> {
+                // No video available, proceed to main activity immediately
+                proceedToMainActivity()
+                return
+            }
+        }
+
+        try {
+            videoView.setVideoURI(videoUri)
+            
+            // Set completion listener
+            videoView.setOnCompletionListener {
+                videoCompleted = true
+                proceedToMainActivity()
+            }
+
+            // Set error listener for graceful fallback
+            videoView.setOnErrorListener { _, what, extra ->
+                android.util.Log.e("SplashScreen", "Video playback error: what=$what, extra=$extra")
+                proceedToMainActivity()
+                true
+            }
+
+            // Make video clickable to skip
+            videoView.setOnClickListener {
+                if (!videoCompleted) {
+                    proceedToMainActivity()
+                }
+            }
+
+            // Start playback
+            videoView.start()
+        } catch (e: Exception) {
+            android.util.Log.e("SplashScreen", "Failed to setup video", e)
+            proceedToMainActivity()
+        }
+    }
+
+    /**
+     * Checks for custom video in external files directory
+     * Users can place their own template.mp4 here to customize splash screen
+     * 
+     * Path: /Android/data/com.example.notificationthriller/files/template.mp4
+     */
+    private fun getCustomVideoPath(): Uri? {
+        val customVideo = File(getExternalFilesDir(null), "template.mp4")
+        return if (customVideo.exists() && customVideo.canRead()) {
+            Uri.fromFile(customVideo)
+        } else {
+            null
+        }
+    }
+
+    /**
+     * Checks if built-in video resource exists
+     */
+    private fun hasBuiltInVideo(): Boolean {
+        return try {
+            resources.openRawResource(R.raw.template).close()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    /**
+     * Gets URI for built-in video from raw resources
+     */
+    private fun getBuiltInVideoUri(): Uri {
+        return Uri.parse("android.resource://$packageName/${R.raw.template}")
+    }
+
+    /**
+     * Transitions to main activity
+     */
+    private fun proceedToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+        
+        // Add smooth transition animation
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (::videoView.isInitialized && videoView.isPlaying) {
+            videoView.pause()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::videoView.isInitialized) {
+            videoView.stopPlayback()
+        }
+    }
+
+    override fun onBackPressed() {
+        // Prevent back button during splash screen
+        // User can still tap to skip
+    }
+}

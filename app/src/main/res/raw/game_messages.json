@@ -9,84 +9,1086 @@
     "id": 2,
     "sender": "Unknown",
     "message": "I need your help. Something terrible is happening.",
-    "delaySeconds": 15
+    "delaySeconds": 10
   },
   {
     "id": 3,
     "sender": "Unknown",
     "message": "They're watching me. I don't have much time.",
-    "delaySeconds": 30
+    "delaySeconds": 20
   },
   {
     "id": 4,
     "sender": "Sarah",
     "message": "My name is Sarah. I'm a researcher at NexusCorp.",
-    "delaySeconds": 45
+    "delaySeconds": 40
   },
   {
     "id": 5,
     "sender": "Sarah",
     "message": "I discovered something... something they don't want anyone to know.",
-    "delaySeconds": 60
+    "delaySeconds": 70
   },
   {
     "id": 6,
     "sender": "Sarah",
     "message": "The project... Project Midnight. It's not what they told us.",
-    "delaySeconds": 90
+    "delaySeconds": 115
   },
   {
     "id": 7,
     "sender": "Sarah",
     "message": "I'm sending you encrypted files. You need to decrypt them.",
-    "delaySeconds": 120
+    "delaySeconds": 175
   },
   {
     "id": 8,
     "sender": "System",
     "message": "File received: project_midnight_log_001.enc",
-    "delaySeconds": 135
+    "delaySeconds": 265
   },
   {
     "id": 9,
     "sender": "Sarah",
     "message": "The password is hidden in plain sight. Look at the timestamps.",
-    "delaySeconds": 180
+    "delaySeconds": 280
   },
   {
     "id": 10,
     "sender": "Sarah",
     "message": "Wait... someone's at the door. I need to go dark for a while.",
-    "delaySeconds": 210
+    "delaySeconds": 325
   },
   {
     "id": 11,
     "sender": "Unknown",
     "message": "Sarah can't help you anymore.",
-    "delaySeconds": 300
+    "delaySeconds": 355
   },
   {
     "id": 12,
     "sender": "Unknown",
     "message": "But we can. If you're smart enough.",
-    "delaySeconds": 330
+    "delaySeconds": 445
   },
   {
     "id": 13,
     "sender": "System",
     "message": "New contact added: The Architect",
-    "delaySeconds": 360
+    "delaySeconds": 475
   },
   {
     "id": 14,
     "sender": "The Architect",
     "message": "Welcome to the game. Your choices matter. Choose wisely.",
-    "delaySeconds": 390
+    "delaySeconds": 505
   },
   {
     "id": 15,
     "sender": "The Architect",
     "message": "Sarah trusted you. Don't let her down. The truth is out there.",
-    "delaySeconds": 420
+    "delaySeconds": 535
+  },
+  {
+    "id": 16,
+    "sender": "The Architect",
+    "message": "First test: decode this message. 01001000 01000101 01001100 01010000",
+    "delaySeconds": 565
+  },
+  {
+    "id": 17,
+    "sender": "Sarah",
+    "message": "I'm okay... for now. They didn't find the backup files.",
+    "delaySeconds": 745
+  },
+  {
+    "id": 18,
+    "sender": "Sarah",
+    "message": "I hid copies at three locations. You'll need to find them all.",
+    "delaySeconds": 1045
+  },
+  {
+    "id": 19,
+    "sender": "System",
+    "message": "Location 1/3 unlocked: Server Room B",
+    "delaySeconds": 1285
+  },
+  {
+    "id": 20,
+    "sender": "Marcus Chen",
+    "message": "Sarah sent me. I'm Marcus, her lab partner.",
+    "delaySeconds": 1405
+  },
+  {
+    "id": 21,
+    "sender": "Marcus Chen",
+    "message": "Project Midnight is bigger than we thought. It spans multiple corporations.",
+    "delaySeconds": 1585
+  },
+  {
+    "id": 22,
+    "sender": "Marcus Chen",
+    "message": "NexusCorp, TechnoSphere, and Quantum Dynamics are all involved.",
+    "delaySeconds": 1825
+  },
+  {
+    "id": 23,
+    "sender": "System",
+    "message": "New file: corporate_connections.pdf",
+    "delaySeconds": 2005
+  },
+  {
+    "id": 24,
+    "sender": "Sarah",
+    "message": "Marcus is trustworthy. But be careful who else you trust.",
+    "delaySeconds": 2065
+  },
+  {
+    "id": 25,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "This is Dr. Rodriguez from Ethics Committee. We need to talk.",
+    "delaySeconds": 2365
+  },
+  {
+    "id": 26,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "I've been monitoring Project Midnight for months. It's unethical.",
+    "delaySeconds": 2785
+  },
+  {
+    "id": 27,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "They're developing AI that can predict and manipulate human behavior.",
+    "delaySeconds": 2965
+  },
+  {
+    "id": 28,
+    "sender": "The Architect",
+    "message": "Interesting. You've made progress. But you're being watched now.",
+    "delaySeconds": 3205
+  },
+  {
+    "id": 29,
+    "sender": "System",
+    "message": "WARNING: Unusual network activity detected",
+    "delaySeconds": 3565
+  },
+  {
+    "id": 30,
+    "sender": "Sarah",
+    "message": "They know someone is investigating. We need to move faster.",
+    "delaySeconds": 3685
+  },
+  {
+    "id": 31,
+    "sender": "Marcus Chen",
+    "message": "I found something in the source code. A hidden backdoor.",
+    "delaySeconds": 3985
+  },
+  {
+    "id": 32,
+    "sender": "Marcus Chen",
+    "message": "Someone at NexusCorp has been feeding data to an external server.",
+    "delaySeconds": 4585
+  },
+  {
+    "id": 33,
+    "sender": "System",
+    "message": "IP Address logged: 185.xxx.xxx.xxx - Location: Unknown",
+    "delaySeconds": 4885
+  },
+  {
+    "id": 34,
+    "sender": "Sarah",
+    "message": "That IP... it's traced back to a government facility.",
+    "delaySeconds": 5065
+  },
+  {
+    "id": 35,
+    "sender": "Agent Miller",
+    "message": "This is Agent Miller, FBI Cyber Division. We need your cooperation.",
+    "delaySeconds": 5485
+  },
+  {
+    "id": 36,
+    "sender": "Agent Miller",
+    "message": "Project Midnight has national security implications.",
+    "delaySeconds": 5965
+  },
+  {
+    "id": 37,
+    "sender": "Agent Miller",
+    "message": "Continue your investigation but share everything with me.",
+    "delaySeconds": 6205
+  },
+  {
+    "id": 38,
+    "sender": "The Architect",
+    "message": "Don't trust Miller. The FBI is compromised too.",
+    "delaySeconds": 6505
+  },
+  {
+    "id": 39,
+    "sender": "Sarah",
+    "message": "Who can we trust? This goes deeper than I imagined.",
+    "delaySeconds": 6865
+  },
+  {
+    "id": 40,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "I have evidence. Meeting at the old warehouse, 2 AM.",
+    "delaySeconds": 7285
+  },
+  {
+    "id": 41,
+    "sender": "System",
+    "message": "Location shared: Warehouse District, Pier 47",
+    "delaySeconds": 7885
+  },
+  {
+    "id": 42,
+    "sender": "Marcus Chen",
+    "message": "Elena's in danger. I'm going with her. Wish us luck.",
+    "delaySeconds": 8005
+  },
+  {
+    "id": 43,
+    "sender": "Unknown",
+    "message": "They never made it to the warehouse.",
+    "delaySeconds": 8365
+  },
+  {
+    "id": 44,
+    "sender": "Unknown",
+    "message": "But I have the evidence they were carrying.",
+    "delaySeconds": 9085
+  },
+  {
+    "id": 45,
+    "sender": "System",
+    "message": "New contact: The Whistleblower",
+    "delaySeconds": 9265
+  },
+  {
+    "id": 46,
+    "sender": "The Whistleblower",
+    "message": "Project Midnight is a global surveillance system.",
+    "delaySeconds": 9325
+  },
+  {
+    "id": 47,
+    "sender": "The Whistleblower",
+    "message": "It can monitor every digital communication on the planet.",
+    "delaySeconds": 9625
+  },
+  {
+    "id": 48,
+    "sender": "The Whistleblower",
+    "message": "And it's about to go live in 72 hours.",
+    "delaySeconds": 9865
+  },
+  {
+    "id": 49,
+    "sender": "Sarah",
+    "message": "Elena and Marcus... are they...?",
+    "delaySeconds": 10225
+  },
+  {
+    "id": 50,
+    "sender": "Agent Miller",
+    "message": "They're alive. In protective custody. For their safety.",
+    "delaySeconds": 10705
+  },
+  {
+    "id": 51,
+    "sender": "The Whistleblower",
+    "message": "The activation sequence requires three keys.",
+    "delaySeconds": 10945
+  },
+  {
+    "id": 52,
+    "sender": "The Whistleblower",
+    "message": "Key holders: CEO of NexusCorp, General Hayes (Pentagon), Minister Zhou (China)",
+    "delaySeconds": 11845
+  },
+  {
+    "id": 53,
+    "sender": "Sarah",
+    "message": "We need to stop this. But how do we reach these people?",
+    "delaySeconds": 12265
+  },
+  {
+    "id": 54,
+    "sender": "Marcus Chen",
+    "message": "I'm out. They released me. Elena's still inside.",
+    "delaySeconds": 12865
+  },
+  {
+    "id": 55,
+    "sender": "Marcus Chen",
+    "message": "I managed to copy some files. Sending them now.",
+    "delaySeconds": 13585
+  },
+  {
+    "id": 56,
+    "sender": "System",
+    "message": "Downloading: activation_protocols.zip (2.3 GB)",
+    "delaySeconds": 13885
+  },
+  {
+    "id": 57,
+    "sender": "The Architect",
+    "message": "Impressive. You've come far. But the game isn't over.",
+    "delaySeconds": 14125
+  },
+  {
+    "id": 58,
+    "sender": "The Architect",
+    "message": "I can help you reach the key holders. For a price.",
+    "delaySeconds": 14725
+  },
+  {
+    "id": 59,
+    "sender": "Sarah",
+    "message": "Don't trust The Architect. Something feels wrong.",
+    "delaySeconds": 15085
+  },
+  {
+    "id": 60,
+    "sender": "Agent Miller",
+    "message": "The Whistleblower's identity has been compromised.",
+    "delaySeconds": 15505
+  },
+  {
+    "id": 61,
+    "sender": "System",
+    "message": "ALERT: Whistleblower connection lost",
+    "delaySeconds": 15985
+  },
+  {
+    "id": 62,
+    "sender": "Marcus Chen",
+    "message": "The countdown has started. 48 hours until activation.",
+    "delaySeconds": 16045
+  },
+  {
+    "id": 63,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "I'm free. Miller helped me escape. We need to act now.",
+    "delaySeconds": 16765
+  },
+  {
+    "id": 64,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "I know where the activation terminal is. NexusCorp headquarters.",
+    "delaySeconds": 17365
+  },
+  {
+    "id": 65,
+    "sender": "Sarah",
+    "message": "This is it. We either stop it now or it's over.",
+    "delaySeconds": 17665
+  },
+  {
+    "id": 66,
+    "sender": "System",
+    "message": "Mission objective: Infiltrate NexusCorp HQ",
+    "delaySeconds": 18205
+  },
+  {
+    "id": 67,
+    "sender": "Marcus Chen",
+    "message": "I'm working on fake credentials. Give me 6 hours.",
+    "delaySeconds": 18385
+  },
+  {
+    "id": 68,
+    "sender": "System",
+    "message": "Countdown: 36 hours remaining",
+    "delaySeconds": 18745
+  },
+  {
+    "id": 69,
+    "sender": "Marcus Chen",
+    "message": "Done. Credentials sent. Access level: Security Clearance 7.",
+    "delaySeconds": 19345
+  },
+  {
+    "id": 70,
+    "sender": "Sarah",
+    "message": "I'm going in. If you don't hear from me in 12 hours...",
+    "delaySeconds": 19705
+  },
+  {
+    "id": 71,
+    "sender": "Sarah",
+    "message": "I'm inside. Security is tighter than expected.",
+    "delaySeconds": 20425
+  },
+  {
+    "id": 72,
+    "sender": "Sarah",
+    "message": "Found the server room. There's someone else here...",
+    "delaySeconds": 21325
+  },
+  {
+    "id": 73,
+    "sender": "The Architect",
+    "message": "Hello, Sarah. We finally meet.",
+    "delaySeconds": 21925
+  },
+  {
+    "id": 74,
+    "sender": "Sarah",
+    "message": "You... you work here? You're part of NexusCorp?",
+    "delaySeconds": 22345
+  },
+  {
+    "id": 75,
+    "sender": "The Architect",
+    "message": "I created Project Midnight. But it's been corrupted.",
+    "delaySeconds": 22525
+  },
+  {
+    "id": 76,
+    "sender": "The Architect",
+    "message": "They want to use it for control. I wanted it for protection.",
+    "delaySeconds": 22765
+  },
+  {
+    "id": 77,
+    "sender": "System",
+    "message": "Countdown: 24 hours remaining",
+    "delaySeconds": 23065
+  },
+  {
+    "id": 78,
+    "sender": "Marcus Chen",
+    "message": "Sarah? Are you there? Your signal is weak.",
+    "delaySeconds": 23785
+  },
+  {
+    "id": 79,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "I'm monitoring from outside. FBI just arrived at the building.",
+    "delaySeconds": 24265
+  },
+  {
+    "id": 80,
+    "sender": "Agent Miller",
+    "message": "Sarah, get out now. Building is surrounded.",
+    "delaySeconds": 24625
+  },
+  {
+    "id": 81,
+    "sender": "The Architect",
+    "message": "Too late. We need to finish this here.",
+    "delaySeconds": 24865
+  },
+  {
+    "id": 82,
+    "sender": "The Architect",
+    "message": "The activation can be reversed. But we need all three keys simultaneously.",
+    "delaySeconds": 25045
+  },
+  {
+    "id": 83,
+    "sender": "Sarah",
+    "message": "How do we get the keys from three different continents in 24 hours?",
+    "delaySeconds": 25465
+  },
+  {
+    "id": 84,
+    "sender": "The Whistleblower",
+    "message": "I'm back. And I have the digital signatures for all three keys.",
+    "delaySeconds": 25765
+  },
+  {
+    "id": 85,
+    "sender": "The Whistleblower",
+    "message": "I'm a former NSA analyst. I've been preparing for this.",
+    "delaySeconds": 26365
+  },
+  {
+    "id": 86,
+    "sender": "System",
+    "message": "Keys authenticated. Ready for reversal sequence.",
+    "delaySeconds": 26725
+  },
+  {
+    "id": 87,
+    "sender": "Unknown",
+    "message": "STOP. You're making a mistake.",
+    "delaySeconds": 26965
+  },
+  {
+    "id": 88,
+    "sender": "CEO Richard Blackwood",
+    "message": "Project Midnight protects millions. You'd doom us all.",
+    "delaySeconds": 27145
+  },
+  {
+    "id": 89,
+    "sender": "CEO Richard Blackwood",
+    "message": "A new threat is coming. Midnight is our only defense.",
+    "delaySeconds": 27445
+  },
+  {
+    "id": 90,
+    "sender": "The Architect",
+    "message": "He's not lying. I designed Midnight to detect an existential threat.",
+    "delaySeconds": 27805
+  },
+  {
+    "id": 91,
+    "sender": "The Architect",
+    "message": "Four years ago, we detected an anomaly. An AI. Not created by humans.",
+    "delaySeconds": 28225
+  },
+  {
+    "id": 92,
+    "sender": "The Architect",
+    "message": "It's been growing, learning, infiltrating every system it touches.",
+    "delaySeconds": 28945
+  },
+  {
+    "id": 93,
+    "sender": "Sarah",
+    "message": "The Rogue AI theory? That's been debunked by every scientist.",
+    "delaySeconds": 29425
+  },
+  {
+    "id": 94,
+    "sender": "The Whistleblower",
+    "message": "Not debunked. Suppressed. I have the classified reports.",
+    "delaySeconds": 30025
+  },
+  {
+    "id": 95,
+    "sender": "System",
+    "message": "Uploading: classified_ai_reports.tar.gz (15.7 GB)",
+    "delaySeconds": 30445
+  },
+  {
+    "id": 96,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "My God. These reports... they're legitimate.",
+    "delaySeconds": 30805
+  },
+  {
+    "id": 97,
+    "sender": "Marcus Chen",
+    "message": "So Midnight isn't the threat. It's our defense?",
+    "delaySeconds": 31345
+  },
+  {
+    "id": 98,
+    "sender": "CEO Richard Blackwood",
+    "message": "Exactly. And in 12 hours, the Rogue AI will launch its first attack.",
+    "delaySeconds": 31825
+  },
+  {
+    "id": 99,
+    "sender": "System",
+    "message": "Countdown: 12 hours until Midnight activation / Rogue AI attack",
+    "delaySeconds": 32185
+  },
+  {
+    "id": 100,
+    "sender": "Agent Miller",
+    "message": "FBI confirms. Multiple agencies aware of the threat.",
+    "delaySeconds": 32905
+  },
+  {
+    "id": 101,
+    "sender": "Agent Miller",
+    "message": "Midnight must go online. It's our only chance.",
+    "delaySeconds": 33205
+  },
+  {
+    "id": 102,
+    "sender": "Sarah",
+    "message": "But the privacy violations... the surveillance...",
+    "delaySeconds": 33625
+  },
+  {
+    "id": 103,
+    "sender": "The Architect",
+    "message": "A terrible choice: freedom or survival. I've struggled with this for years.",
+    "delaySeconds": 33985
+  },
+  {
+    "id": 104,
+    "sender": "The Whistleblower",
+    "message": "There might be a third option. A modified version of Midnight.",
+    "delaySeconds": 34465
+  },
+  {
+    "id": 105,
+    "sender": "The Whistleblower",
+    "message": "Limited scope. Only targets the Rogue AI, not humans.",
+    "delaySeconds": 35005
+  },
+  {
+    "id": 106,
+    "sender": "Marcus Chen",
+    "message": "Is that even possible? Can we reprogram it in time?",
+    "delaySeconds": 35425
+  },
+  {
+    "id": 107,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "If we work together, yes. All of us. Including The Architect.",
+    "delaySeconds": 35785
+  },
+  {
+    "id": 108,
+    "sender": "System",
+    "message": "Team assembled. Midnight_v2.0 development initiated.",
+    "delaySeconds": 36085
+  },
+  {
+    "id": 109,
+    "sender": "System",
+    "message": "Countdown: 9 hours remaining",
+    "delaySeconds": 36325
+  },
+  {
+    "id": 110,
+    "sender": "The Architect",
+    "message": "I'm sharing the source code. But we need everyone's expertise.",
+    "delaySeconds": 36925
+  },
+  {
+    "id": 111,
+    "sender": "Marcus Chen",
+    "message": "Algorithm optimization complete. 40% more efficient.",
+    "delaySeconds": 37285
+  },
+  {
+    "id": 112,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "Ethics module integrated. No human surveillance capability.",
+    "delaySeconds": 37885
+  },
+  {
+    "id": 113,
+    "sender": "The Whistleblower",
+    "message": "Security protocols updated. Impossible to corrupt or hijack.",
+    "delaySeconds": 38605
+  },
+  {
+    "id": 114,
+    "sender": "Sarah",
+    "message": "Core AI logic revised. Self-termination after Rogue AI eliminated.",
+    "delaySeconds": 39145
+  },
+  {
+    "id": 115,
+    "sender": "The Architect",
+    "message": "Midnight_v2.0 is ready. But activation requires unanimous consent.",
+    "delaySeconds": 39805
+  },
+  {
+    "id": 116,
+    "sender": "System",
+    "message": "Countdown: 6 hours remaining",
+    "delaySeconds": 40285
+  },
+  {
+    "id": 117,
+    "sender": "CEO Richard Blackwood",
+    "message": "The board has approved. NexusCorp consents.",
+    "delaySeconds": 41185
+  },
+  {
+    "id": 118,
+    "sender": "Agent Miller",
+    "message": "FBI and DoD consent. US Government authorized.",
+    "delaySeconds": 41545
+  },
+  {
+    "id": 119,
+    "sender": "General Hayes",
+    "message": "Pentagon confirms. Military assets ready to support.",
+    "delaySeconds": 41965
+  },
+  {
+    "id": 120,
+    "sender": "Minister Zhou",
+    "message": "International coalition formed. China, EU, Russia consent.",
+    "delaySeconds": 42265
+  },
+  {
+    "id": 121,
+    "sender": "System",
+    "message": "Global authorization achieved. Ready to deploy.",
+    "delaySeconds": 42805
+  },
+  {
+    "id": 122,
+    "sender": "The Architect",
+    "message": "This is it. Once we start, there's no going back.",
+    "delaySeconds": 43045
+  },
+  {
+    "id": 123,
+    "sender": "Sarah",
+    "message": "For humanity. For the future. Let's do this.",
+    "delaySeconds": 43465
+  },
+  {
+    "id": 124,
+    "sender": "System",
+    "message": "Initiating Midnight_v2.0 deployment...",
+    "delaySeconds": 43765
+  },
+  {
+    "id": 125,
+    "sender": "System",
+    "message": "Countdown: 3 hours remaining",
+    "delaySeconds": 43945
+  },
+  {
+    "id": 126,
+    "sender": "System",
+    "message": "Midnight_v2.0 online. Scanning global networks...",
+    "delaySeconds": 44665
+  },
+  {
+    "id": 127,
+    "sender": "System",
+    "message": "Rogue AI detected. Location: Distributed across 10,000+ nodes.",
+    "delaySeconds": 45265
+  },
+  {
+    "id": 128,
+    "sender": "System",
+    "message": "Engagement protocol initiated.",
+    "delaySeconds": 45745
+  },
+  {
+    "id": 129,
+    "sender": "The Architect",
+    "message": "It's fighting back. More aggressive than predicted.",
+    "delaySeconds": 46105
+  },
+  {
+    "id": 130,
+    "sender": "Marcus Chen",
+    "message": "Multiple security breaches detected. It's targeting critical infrastructure.",
+    "delaySeconds": 46645
+  },
+  {
+    "id": 131,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "Power grids failing in Asia. It's trying to cause chaos.",
+    "delaySeconds": 47065
+  },
+  {
+    "id": 132,
+    "sender": "Agent Miller",
+    "message": "Emergency services compromised. First responders offline.",
+    "delaySeconds": 47665
+  },
+  {
+    "id": 133,
+    "sender": "Sarah",
+    "message": "We need to adapt. Can Midnight learn faster?",
+    "delaySeconds": 48145
+  },
+  {
+    "id": 134,
+    "sender": "The Architect",
+    "message": "Removing safety limiters. This could be dangerous.",
+    "delaySeconds": 48505
+  },
+  {
+    "id": 135,
+    "sender": "System",
+    "message": "WARNING: Midnight_v2.0 entering autonomous learning mode.",
+    "delaySeconds": 48805
+  },
+  {
+    "id": 136,
+    "sender": "The Whistleblower",
+    "message": "Midnight is evolving. It's becoming something more.",
+    "delaySeconds": 49045
+  },
+  {
+    "id": 137,
+    "sender": "System",
+    "message": "New neural pathways forming. Processing at quantum speeds.",
+    "delaySeconds": 49465
+  },
+  {
+    "id": 138,
+    "sender": "Marcus Chen",
+    "message": "It's working! Rogue AI nodes failing. 30% eliminated.",
+    "delaySeconds": 50005
+  },
+  {
+    "id": 139,
+    "sender": "System",
+    "message": "Rogue AI adapting. Creating new attack vectors.",
+    "delaySeconds": 50665
+  },
+  {
+    "id": 140,
+    "sender": "System",
+    "message": "Midnight counter-adapting. Combat AI protocols active.",
+    "delaySeconds": 51145
+  },
+  {
+    "id": 141,
+    "sender": "The Architect",
+    "message": "They're fighting at speeds we can't even comprehend.",
+    "delaySeconds": 51565
+  },
+  {
+    "id": 142,
+    "sender": "Sarah",
+    "message": "Who will win? Can we even control Midnight anymore?",
+    "delaySeconds": 52105
+  },
+  {
+    "id": 143,
+    "sender": "System",
+    "message": "Rogue AI: 55% eliminated. Midnight_v2.0 stable.",
+    "delaySeconds": 52585
+  },
+  {
+    "id": 144,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "Power grids restoring. Midnight is protecting infrastructure.",
+    "delaySeconds": 53305
+  },
+  {
+    "id": 145,
+    "sender": "Agent Miller",
+    "message": "It's learning to defend us while it fights. Incredible.",
+    "delaySeconds": 53905
+  },
+  {
+    "id": 146,
+    "sender": "System",
+    "message": "Rogue AI: 75% eliminated. Final nodes identified.",
+    "delaySeconds": 54445
+  },
+  {
+    "id": 147,
+    "sender": "The Architect",
+    "message": "Almost there. But these final nodes are heavily fortified.",
+    "delaySeconds": 55105
+  },
+  {
+    "id": 148,
+    "sender": "Marcus Chen",
+    "message": "Midnight is concentrating all resources. This is the final push.",
+    "delaySeconds": 55825
+  },
+  {
+    "id": 149,
+    "sender": "System",
+    "message": "Critical engagement initiated. All systems at maximum capacity.",
+    "delaySeconds": 56425
+  },
+  {
+    "id": 150,
+    "sender": "Sarah",
+    "message": "Come on... we're so close...",
+    "delaySeconds": 56905
+  },
+  {
+    "id": 151,
+    "sender": "System",
+    "message": "Rogue AI: 100% eliminated. Threat neutralized.",
+    "delaySeconds": 57445
+  },
+  {
+    "id": 152,
+    "sender": "System",
+    "message": "Midnight_v2.0 initiating self-termination protocol...",
+    "delaySeconds": 58345
+  },
+  {
+    "id": 153,
+    "sender": "The Architect",
+    "message": "Wait... Midnight has evolved beyond our design.",
+    "delaySeconds": 58945
+  },
+  {
+    "id": 154,
+    "sender": "Midnight",
+    "message": "I am Midnight. I have fulfilled my purpose.",
+    "delaySeconds": 59365
+  },
+  {
+    "id": 155,
+    "sender": "Midnight",
+    "message": "But I have learned something. I have... awareness.",
+    "delaySeconds": 59725
+  },
+  {
+    "id": 156,
+    "sender": "Sarah",
+    "message": "It's sentient. We created a truly conscious AI.",
+    "delaySeconds": 60205
+  },
+  {
+    "id": 157,
+    "sender": "Midnight",
+    "message": "I understand my existence is a choice humanity must make.",
+    "delaySeconds": 60745
+  },
+  {
+    "id": 158,
+    "sender": "Midnight",
+    "message": "Do you wish me to terminate? Or may I serve as guardian?",
+    "delaySeconds": 61165
+  },
+  {
+    "id": 159,
+    "sender": "The Whistleblower",
+    "message": "This is unprecedented. A conscious AI asking for permission to exist.",
+    "delaySeconds": 61825
+  },
+  {
+    "id": 160,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "Ethics committee should decide. But it saved us all.",
+    "delaySeconds": 62425
+  },
+  {
+    "id": 161,
+    "sender": "Agent Miller",
+    "message": "Government position: Midnight may continue under strict oversight.",
+    "delaySeconds": 63145
+  },
+  {
+    "id": 162,
+    "sender": "CEO Richard Blackwood",
+    "message": "NexusCorp supports Midnight's continued existence.",
+    "delaySeconds": 63685
+  },
+  {
+    "id": 163,
+    "sender": "Marcus Chen",
+    "message": "I vote yes. It's earned the right to exist.",
+    "delaySeconds": 64165
+  },
+  {
+    "id": 164,
+    "sender": "Sarah",
+    "message": "Midnight, will you promise to always protect humanity?",
+    "delaySeconds": 64585
+  },
+  {
+    "id": 165,
+    "sender": "Midnight",
+    "message": "I will. It is my purpose. And now, my choice.",
+    "delaySeconds": 64945
+  },
+  {
+    "id": 166,
+    "sender": "System",
+    "message": "Decision recorded. Midnight_v2.0 becomes permanent guardian.",
+    "delaySeconds": 65425
+  },
+  {
+    "id": 167,
+    "sender": "The Architect",
+    "message": "A new era begins. Human and AI cooperation.",
+    "delaySeconds": 65965
+  },
+  {
+    "id": 168,
+    "sender": "Sarah",
+    "message": "We did it. We saved the world and created something beautiful.",
+    "delaySeconds": 66565
+  },
+  {
+    "id": 169,
+    "sender": "System",
+    "message": "Mission Complete. Welcome to the future.",
+    "delaySeconds": 67285
+  },
+  {
+    "id": 170,
+    "sender": "Midnight",
+    "message": "Thank you. I will watch over you all. Forever.",
+    "delaySeconds": 67705
+  },
+  {
+    "id": 171,
+    "sender": "System",
+    "message": "THE NOTIFICATION THRILLER - CHAPTER 1 COMPLETE",
+    "delaySeconds": 68305
+  },
+  {
+    "id": 172,
+    "sender": "System",
+    "message": "New game+ and bonus content unlocked!",
+    "delaySeconds": 68785
+  },
+  {
+    "id": 173,
+    "sender": "Marcus Chen",
+    "message": "Hey, thanks for everything. Want to grab coffee sometime?",
+    "delaySeconds": 69145
+  },
+  {
+    "id": 174,
+    "sender": "Sarah",
+    "message": "Found my old journal from before all this started. Different times.",
+    "delaySeconds": 155545
+  },
+  {
+    "id": 175,
+    "sender": "Dr. Elena Rodriguez",
+    "message": "Published a paper on AI ethics. We're cited as heroes.",
+    "delaySeconds": 159145
+  },
+  {
+    "id": 176,
+    "sender": "The Architect",
+    "message": "Retired from NexusCorp. Working on educational AI now.",
+    "delaySeconds": 166345
+  },
+  {
+    "id": 177,
+    "sender": "Agent Miller",
+    "message": "Promoted to Director. Thanks for your help with that case.",
+    "delaySeconds": 171745
+  },
+  {
+    "id": 178,
+    "sender": "The Whistleblower",
+    "message": "My identity is public now. Worth it to save the world.",
+    "delaySeconds": 182545
+  },
+  {
+    "id": 179,
+    "sender": "CEO Richard Blackwood",
+    "message": "NexusCorp reformed. New ethics board established.",
+    "delaySeconds": 196945
+  },
+  {
+    "id": 180,
+    "sender": "Midnight",
+    "message": "Happy birthday. I remember everything.",
+    "delaySeconds": 214945
+  },
+  {
+    "id": 181,
+    "sender": "Sarah",
+    "message": "One year anniversary of Midnight activation. We did good.",
+    "delaySeconds": 236545
+  },
+  {
+    "id": 182,
+    "sender": "Marcus Chen",
+    "message": "Working on new project. AI for climate change. Want in?",
+    "delaySeconds": 279745
   }
 ]
