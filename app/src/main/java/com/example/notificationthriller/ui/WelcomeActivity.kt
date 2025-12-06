@@ -44,7 +44,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun setupViewPager() {
-        adapter = WelcomePagerAdapter(this)
+        adapter = WelcomePagerAdapter()
         binding.viewPager.adapter = adapter
         
         // Setup tab dots indicator

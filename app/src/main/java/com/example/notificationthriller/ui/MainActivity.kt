@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             hapticManager.lightTap()
             soundManager.playMessageSent()
             // TODO: Open character profiles screen
-            android.widget.Toast.makeText(this, "Character profiles coming soon!", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(this, R.string.feature_coming_soon_profiles, android.widget.Toast.LENGTH_SHORT).show()
             bottomSheet.dismiss()
         }
         
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             hapticManager.lightTap()
             soundManager.playMessageSent()
             // TODO: Open achievements screen
-            android.widget.Toast.makeText(this, "Achievements screen coming soon!", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(this, R.string.feature_coming_soon_achievements, android.widget.Toast.LENGTH_SHORT).show()
             bottomSheet.dismiss()
         }
         
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             hapticManager.lightTap()
             soundManager.playMessageSent()
             // TODO: Open statistics screen
-            android.widget.Toast.makeText(this, "Statistics screen coming soon!", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(this, R.string.feature_coming_soon_statistics, android.widget.Toast.LENGTH_SHORT).show()
             bottomSheet.dismiss()
         }
         

@@ -11,7 +11,7 @@ import com.example.notificationthriller.R
 /**
  * ViewPager2 adapter for welcome screens
  */
-class WelcomePagerAdapter(private val activity: WelcomeActivity) : 
+class WelcomePagerAdapter : 
     RecyclerView.Adapter<WelcomePagerAdapter.WelcomeViewHolder>() {
 
     private val pages = listOf(
