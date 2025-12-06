@@ -121,4 +121,16 @@
     <string name="feature_coming_soon_profiles">Character profiles coming soon!</string>
     <string name="feature_coming_soon_achievements">Achievements screen coming soon!</string>
     <string name="feature_coming_soon_statistics">Statistics screen coming soon!</string>
+    
+    <!-- Waiting Experience Enhancements -->
+    <string name="first_wait_title">🎭 Real-Time Thriller</string>
+    <string name="patience_achievement_title">🏆 Achievement Unlocked!</string>
+    <string name="patience_achievement_name">Patient Observer</string>
+    <string name="patience_achievement_desc">You\'ve mastered the art of patience. You understand that the best stories unfold in their own time.\n\nThe tension is building…</string>
+    <string name="anticipation_building">Something\'s about to happen…</string>
+    <string name="story_deepening">The story deepens. Stay alert…</string>
+    <string name="revelation_coming">Big revelations coming. The wait will be worth it…</string>
+    <string name="major_unfolding">Something major is unfolding. This is the calm before the storm…</string>
+    <string name="understand_button">I Understand</string>
+    <string name="awesome_button">Awesome!</string>
 </resources>

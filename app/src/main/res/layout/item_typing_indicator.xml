@@ -27,7 +27,7 @@
             android:background="@drawable/sender_avatar_background" />
 
         <!-- Typing indicator dots -->
-        <com.example.notificationthriller.ui.TypingIndicatorView
+        <com.notificationthriller.app.ui.TypingIndicatorView
             android:layout_width="60dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"

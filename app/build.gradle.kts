@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.notificationthriller"
+    namespace = "com.notificationthriller.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.notificationthriller"
+        applicationId = "com.notificationthriller.app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
