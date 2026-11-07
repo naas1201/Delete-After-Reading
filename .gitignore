@@ -76,3 +76,13 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+# secrets (SEC-2026-018)
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+.key
+*.p12
+.wrangler/
